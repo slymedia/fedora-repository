@@ -1,22 +1,7 @@
 #!/bin/bash -x
-# Islandora Software Installation Framework (ISIF)
-# by Steve Young (SLY), Hamilton College 2014
-#
-# is licensed under a Creative Commons Attribution 4.0 International License.
-# http://creativecommons.org/licenses/by/4.0/deed.en_US
-# Based on a work at http://github.com/dhinitiative/islandora.git.
-# Permissions beyond the scope of this license may be available at http://www.hamilton.edu.
-
-#
-# Revisions
-#
-# 2/5/2014 - SLY - Initial Creation
-
-
 #
 # Script to automatically install Djatoka
 #
-# 1/9/2014 SLY
 
 # Source environment
 . ../etc/env.sh
@@ -32,12 +17,12 @@ if [ $DJATOKA_VERSION == "adore" ]; then
   cd $SRC_DIR
   wget -N -P $SRC_DIR http://downloads.sourceforge.net/project/djatoka/djatoka/1.1/adore-djatoka-1.1.tar.gz
   #wget --no-check-certificate https://hpc.hamilton.edu/adore-djatoka-1.1.tar.gz
-  tar -zxvf adore-djatoka-1.1.tar.gz -C $ISLANDORA_PKGS
-  chown -R $FEDORA_USER:$FEDORA_USER $ISLANDORA_PKGS/adore-djatoka-1.1
-  cp $ISLANDORA_PKGS/adore-djatoka-1.1/dist/adore-djatoka.war $CATALINA_HOME/webapps/
+  tar -zxvf adore-djatoka-1.1.tar.gz -C $REPOSITORY_PKGS
+  chown -R $FEDORA_USER:$FEDORA_USER $REPOSITORY_PKGS/adore-djatoka-1.1
+  cp $REPOSITORY_PKGS/adore-djatoka-1.1/dist/adore-djatoka.war $CATALINA_HOME/webapps/
   # wait for tomcat to load it
   sleep 60
-  cp -f $ISLANDORA_PKGS/adore-djatoka-1.1/dist/adore-djatoka-1.1.jar ${FEDORA_HOME}/tomcat/webapps/adore-djatoka/WEB-INF/lib/
+  cp -f $REPOSITORY_PKGS/adore-djatoka-1.1/dist/adore-djatoka-1.1.jar ${FEDORA_HOME}/tomcat/webapps/adore-djatoka/WEB-INF/lib/
   #
   # update djatoka test page settings
   #
@@ -48,8 +33,8 @@ if [ $DJATOKA_VERSION == "adore" ]; then
   # needed to do this in order to enable the module for Large Image Collection.
   # Then I in the module for the path I could change it to /opt/islandora/bin/kdu_compress
   #
-  ln -s $ISLANDORA_PKGS/adore-djatoka-1.1/bin/Linux-x86-64/kdu_compress /usr/bin/kdu_compress
-  ln -s $ISLANDORA_PKGS/adore-djatoka-1.1/bin/Linux-x86-64/kdu_expand /usr/bin/kdu_expand
+  ln -s $REPOSITORY_PKGS/adore-djatoka-1.1/bin/Linux-x86-64/kdu_compress /usr/bin/kdu_compress
+  ln -s $REPOSITORY_PKGS/adore-djatoka-1.1/bin/Linux-x86-64/kdu_expand /usr/bin/kdu_expand
   #
   # update logging
   #
@@ -62,8 +47,8 @@ if [ $DJATOKA_VERSION == "adore" ]; then
   mv ${FEDORA_HOME}/tomcat/bin/startup.sh ${FEDORA_HOME}/tomcat/bin/startup.sh-orig
   cp ../etc/startup.sh-tomcat ${FEDORA_HOME}/tomcat/bin/startup.sh
   chmod 755 ${FEDORA_HOME}/tomcat/bin/startup.sh
-  mv $ISLANDORA_PKGS/adore-djatoka-1.1/bin/env.sh $ISLANDORA_PKGS/adore-djatoka-1.1/bin/env.sh-orig
-  cp $ISLANDORA_HOME/etc/adore-djatoka-env.sh $ISLANDORA_PKGS/adore-djatoka-1.1/bin/env.sh
+  mv $REPOSITORY_PKGS/adore-djatoka-1.1/bin/env.sh $REPOSITORY_PKGS/adore-djatoka-1.1/bin/env.sh-orig
+  cp $REPOSITORY_HOME/etc/adore-djatoka-env.sh $REPOSITORY_PKGS/adore-djatoka-1.1/bin/env.sh
 fi
 if [ $DJATOKA_VERSION == "adore-src" ]; then
   yum -y install subversion
@@ -79,12 +64,12 @@ if [ $DJATOKA_VERSION == "adore-src" ]; then
   ## Adore Djatoka install
   #
   cd $SRC_DIR/djatoka-code
-  tar -zxvf adore-djatoka-1.1.tar.gz -C $ISLANDORA_PKGS
-  chown -R $FEDORA_USER:$FEDORA_USER $ISLANDORA_PKGS/adore-djatoka-1.1
-  cp $ISLANDORA_PKGS/adore-djatoka-1.1/dist/adore-djatoka.war $CATALINA_HOME/webapps/
+  tar -zxvf adore-djatoka-1.1.tar.gz -C $REPOSITORY_PKGS
+  chown -R $FEDORA_USER:$FEDORA_USER $REPOSITORY_PKGS/adore-djatoka-1.1
+  cp $REPOSITORY_PKGS/adore-djatoka-1.1/dist/adore-djatoka.war $CATALINA_HOME/webapps/
   # wait for tomcat to load it
   sleep 60
-  cp $ISLANDORA_PKGS/adore-djatoka-1.1/dist/adore-djatoka-1.1.jar ${FEDORA_HOME}/tomcat/webapps/adore-djatoka/WEB-INF/lib/
+  cp $REPOSITORY_PKGS/adore-djatoka-1.1/dist/adore-djatoka-1.1.jar ${FEDORA_HOME}/tomcat/webapps/adore-djatoka/WEB-INF/lib/
   #
   # update djatoka test page settings
   #
@@ -95,8 +80,8 @@ if [ $DJATOKA_VERSION == "adore-src" ]; then
   # needed to do this in order to enable the module for Large Image Collection.
   # Then I in the module for the path I could change it to /opt/islandora/bin/kdu_compress
   #
-  ln -s $ISLANDORA_PKGS/adore-djatoka-1.1/bin/Linux-x86-64/kdu_compress /usr/bin/kdu_compress
-  ln -s $ISLANDORA_PKGS/adore-djatoka-1.1/bin/Linux-x86-64/kdu_expand /usr/bin/kdu_expand
+  ln -s $REPOSITORY_PKGS/adore-djatoka-1.1/bin/Linux-x86-64/kdu_compress /usr/bin/kdu_compress
+  ln -s $REPOSITORY_PKGS/adore-djatoka-1.1/bin/Linux-x86-64/kdu_expand /usr/bin/kdu_expand
   #
   # update logging
   #
@@ -109,8 +94,8 @@ if [ $DJATOKA_VERSION == "adore-src" ]; then
   mv ${FEDORA_HOME}/tomcat/bin/startup.sh ${FEDORA_HOME}/tomcat/bin/startup.sh-orig
   cp ../etc/startup.sh-tomcat ${FEDORA_HOME}/tomcat/bin/startup.sh
   chmod 755 ${FEDORA_HOME}/tomcat/bin/startup.sh
-  mv $ISLANDORA_PKGS/adore-djatoka-1.1/bin/env.sh $ISLANDORA_PKGS/adore-djatoka-1.1/bin/env.sh-orig
-  cp $ISLANDORA_HOME/etc/adore-djatoka-env.sh $ISLANDORA_PKGS/adore-djatoka-1.1/bin/env.sh
+  mv $REPOSITORY_PKGS/adore-djatoka-1.1/bin/env.sh $REPOSITORY_PKGS/adore-djatoka-1.1/bin/env.sh-orig
+  cp $REPOSITORY_HOME/etc/adore-djatoka-env.sh $REPOSITORY_PKGS/adore-djatoka-1.1/bin/env.sh
   
 fi
 

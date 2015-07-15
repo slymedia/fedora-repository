@@ -1,23 +1,11 @@
 #!/bin/bash
-# Islandora Software Installation Framework (ISIF)
-# by Steve Young (SLY), Hamilton College 2014
-#
-# is licensed under a Creative Commons Attribution 4.0 International License.
-# http://creativecommons.org/licenses/by/4.0/deed.en_US
-# Based on a work at http://github.com/dhinitiative/islandora.git.
-# Permissions beyond the scope of this license may be available at http://www.hamilton.edu.
-
-#
-# Revisions
-#
-# 2/5/2014 - SLY - Initial Creation
 
 # setup environment variables for shell script
 CURRENTDIR=$CATALINA_HOME/logs
 # Define DJATOKA_HOME dynamically
-LAUNCHDIR=/opt/islandora/packages/adore-djatoka-1.1/bin
+LAUNCHDIR=/opt/fedora-repository/packages/adore-djatoka-1.1/bin
 #cd ..
-DJATOKA_HOME=/opt/islandora/packages/adore-djatoka-1.1
+DJATOKA_HOME=/opt/fedora-repository/packages/adore-djatoka-1.1
 LIBPATH=$DJATOKA_HOME/lib
 if [ `uname` = 'Linux' ] ; then
   if [ `uname -p` = "x86_64" ] ; then

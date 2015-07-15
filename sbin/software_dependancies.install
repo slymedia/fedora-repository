@@ -1,20 +1,6 @@
 #!/bin/bash -x
-# Islandora Software Installation Framework (ISIF)
-# by Steve Young (SLY), Hamilton College 2014
 #
-# is licensed under a Creative Commons Attribution 4.0 International License.
-# http://creativecommons.org/licenses/by/4.0/deed.en_US
-# Based on a work at http://github.com/dhinitiative/islandora.git.
-# Permissions beyond the scope of this license may be available at http://www.hamilton.edu.
-
-#
-# Revisions
-#
-# 2/5/2014 - SLY - Initial Creation
-
-
-#
-# Script to install software that are dependancies for the Islandora software stack
+# Script to install software that are dependancies
 #
 
 
@@ -45,7 +31,7 @@ yum -y install freetype-devel
 # create fedora user account
 #
 groupadd -r $FEDORA_USER
-useradd -c 'fedora user account' -g $FEDORA_USER -d $ISLANDORA_HOME -M -r -s /bin/bash $FEDORA_USER
+useradd -c 'fedora user account' -g $FEDORA_USER -d $REPOSITORY_HOME -M -r -s /bin/bash $FEDORA_USER
 usermod -G fedora apache
 echo "Be sure to set the password for the fedora user (passwd ${FEDORA_USER})." > /etc/motd
 echo "" >> /etc/motd
@@ -81,7 +67,7 @@ echo "run the command "alternatives --config java" and set it for java 8" >> /et
 #fi
 
 
-#if [ $INSTALL_ISLANDORA == "Yes" ]; then
+#if [ $INSTALL_REPOSITORY == "Yes" ]; then
 	#
 	# Enable EPEL
 	#
@@ -118,7 +104,7 @@ echo "run the command "alternatives --config java" and set it for java 8" >> /et
 	#git clone --depth 1 git://github.com/yasm/yasm.git
 	#cd yasm
 	#autoreconf -fiv
-	#./configure --prefix=$ISLANDORA_PKGS/ffmpeg --bindir="$ISLANDORA_PKGS/ffmpeg/bin"
+	#./configure --prefix=$REPOSITORY_PKGS/ffmpeg --bindir="$REPOSITORY_PKGS/ffmpeg/bin"
 	#make
 	#make install
 	#make distclean
@@ -128,7 +114,7 @@ echo "run the command "alternatives --config java" and set it for java 8" >> /et
 	cd $SRC_DIR/ffmpeg_sources
 	git clone --depth 1 git://git.videolan.org/x264
 	cd x264
-	./configure --prefix=$ISLANDORA_PKGS/ffmpeg --bindir="$ISLANDORA_PKGS/ffmpeg/bin" --enable-static
+	./configure --prefix=$REPOSITORY_PKGS/ffmpeg --bindir="$REPOSITORY_PKGS/ffmpeg/bin" --enable-static
 	make
 	make install
 	make distclean
@@ -141,7 +127,7 @@ echo "run the command "alternatives --config java" and set it for java 8" >> /et
 	git clone --depth 1 git://git.code.sf.net/p/opencore-amr/fdk-aac
 	cd fdk-aac
 	autoreconf -fiv
-	./configure --prefix=$ISLANDORA_PKGS/ffmpeg --disable-shared
+	./configure --prefix=$REPOSITORY_PKGS/ffmpeg --disable-shared
 	make
 	make install
 	make distclean
@@ -152,7 +138,7 @@ echo "run the command "alternatives --config java" and set it for java 8" >> /et
 	#curl -L -O http://downloads.sourceforge.net/project/lame/lame/3.99/lame-3.99.5.tar.gz
 	#tar xzvf lame-3.99.5.tar.gz
 	#cd lame-3.99.5
-	#./configure --prefix=$ISLANDORA_PKGS/ffmpeg --bindir="$ISLANDORA_PKGS/ffmpeg/bin" --disable-shared --enable-nasm
+	#./configure --prefix=$REPOSITORY_PKGS/ffmpeg --bindir="$REPOSITORY_PKGS/ffmpeg/bin" --disable-shared --enable-nasm
 	#make
 	#make install
 	#make distclean
@@ -163,7 +149,7 @@ echo "run the command "alternatives --config java" and set it for java 8" >> /et
 	git clone git://git.opus-codec.org/opus.git
 	cd opus
 	autoreconf -fiv
-	./configure --prefix=$ISLANDORA_PKGS/ffmpeg --disable-shared
+	./configure --prefix=$REPOSITORY_PKGS/ffmpeg --disable-shared
 	make
 	make install
 	make distclean
@@ -174,7 +160,7 @@ echo "run the command "alternatives --config java" and set it for java 8" >> /et
 	curl -O http://downloads.xiph.org/releases/ogg/libogg-1.3.2.tar.gz
 	tar xzvf libogg-1.3.2.tar.gz
 	cd libogg-1.3.2
-	./configure --prefix=$ISLANDORA_PKGS/ffmpeg --disable-shared
+	./configure --prefix=$REPOSITORY_PKGS/ffmpeg --disable-shared
 	make
 	make install
 	make distclean
@@ -185,7 +171,7 @@ echo "run the command "alternatives --config java" and set it for java 8" >> /et
 	curl -O http://downloads.xiph.org/releases/vorbis/libvorbis-1.3.4.tar.gz
 	tar xzvf libvorbis-1.3.4.tar.gz
 	cd libvorbis-1.3.4
-	./configure --prefix=$ISLANDORA_PKGS/ffmpeg --with-ogg="$ISLANDORA_PKGS/ffmpeg" --disable-shared
+	./configure --prefix=$REPOSITORY_PKGS/ffmpeg --with-ogg="$REPOSITORY_PKGS/ffmpeg" --disable-shared
 	make
 	make install
 	make distclean
@@ -195,7 +181,7 @@ echo "run the command "alternatives --config java" and set it for java 8" >> /et
 	cd $SRC_DIR/ffmpeg_sources
 	git clone --depth 1 https://chromium.googlesource.com/webm/libvpx.git
 	cd libvpx
-	./configure --prefix="$ISLANDORA_PKGS/ffmpeg" --disable-examples
+	./configure --prefix="$REPOSITORY_PKGS/ffmpeg" --disable-examples
 	make
 	make install
 	make clean
@@ -205,15 +191,15 @@ echo "run the command "alternatives --config java" and set it for java 8" >> /et
 	cd $SRC_DIR/ffmpeg_sources
 	git clone --depth 1 git://source.ffmpeg.org/ffmpeg
 	cd ffmpeg
-	PKG_CONFIG_PATH="$ISLANDORA_PKGS/ffmpeg/lib/pkgconfig" ./configure --prefix="$ISLANDORA_PKGS/ffmpeg" --extra-cflags="-I$ISLANDORA_PKGS/ffmpeg/include" --extra-ldflags="-L$ISLANDORA_PKGS/ffmpeg/lib:/usr/lib64" --bindir="$ISLANDORA_PKGS/ffmpeg/bin" --enable-gpl --enable-nonfree --enable-libfdk_aac --enable-libmp3lame --enable-libopus --enable-libvorbis --enable-libvpx --enable-libx264 --enable-libfreetype --enable-libtheora
+	PKG_CONFIG_PATH="$REPOSITORY_PKGS/ffmpeg/lib/pkgconfig" ./configure --prefix="$REPOSITORY_PKGS/ffmpeg" --extra-cflags="-I$REPOSITORY_PKGS/ffmpeg/include" --extra-ldflags="-L$REPOSITORY_PKGS/ffmpeg/lib:/usr/lib64" --bindir="$REPOSITORY_PKGS/ffmpeg/bin" --enable-gpl --enable-nonfree --enable-libfdk_aac --enable-libmp3lame --enable-libopus --enable-libvorbis --enable-libvpx --enable-libx264 --enable-libfreetype --enable-libtheora
 	make
 	make install
 	make distclean
 	hash -r
 	#
-	# install Makefile that populates symlinks from $ISLANDORA_PKGS/ffmpeg to $ISLANDORA_HOME
+	# install Makefile that populates symlinks from $REPOSITORY_PKGS/ffmpeg to $REPOSITORY_HOME
 	#
-	cd $ISLANDORA_PKGS/ffmpeg
+	cd $REPOSITORY_PKGS/ffmpeg
 	../../sbin/create_package_makefile.sh
 	make install
 	
@@ -241,17 +227,17 @@ echo "run the command "alternatives --config java" and set it for java 8" >> /et
 		cd $SRC_DIR
 		$PACKAGE_UNCOMPRESS $PACKAGE_TARFILE
 		cd $PACKAGE_DIR_UNCOMPRESSED
-		./configure --prefix=$ISLANDORA_PKGS/$PACKAGE_NAME-$PACKAGE_VERSION $EXTRA_CONFIGURE_ARGS
+		./configure --prefix=$REPOSITORY_PKGS/$PACKAGE_NAME-$PACKAGE_VERSION $EXTRA_CONFIGURE_ARGS
 		make
 		make install
-		cd $ISLANDORA_PKGS/$PACKAGE_NAME-$PACKAGE_VERSION
+		cd $REPOSITORY_PKGS/$PACKAGE_NAME-$PACKAGE_VERSION
 		../../sbin/create_package_makefile.sh
 		make install
 		cd $SRC_DIR
 	done
 
 	# link fits.sh 
-	ln -s $ISLANDORA_HOME/packages/fits-0.6.2/fits.sh $ISLANDORA_HOME/bin/fits.sh
+	ln -s $REPOSITORY_HOME/packages/fits-0.6.2/fits.sh $REPOSITORY_HOME/bin/fits.sh
 
 	#
 	## Add in tesseract language pack
@@ -259,6 +245,6 @@ echo "run the command "alternatives --config java" and set it for java 8" >> /et
 	wget -N -P $SRC_DIR https://tesseract-ocr.googlecode.com/files/tesseract-ocr-3.02.eng.tar.gz
 	cd $SRC_DIR
 	tar -zxvf tesseract-ocr-3.02.eng.tar.gz
-	cp -r tesseract-ocr/tessdata/eng.* $ISLANDORA_HOME/share/tessdata
+	cp -r tesseract-ocr/tessdata/eng.* $REPOSITORY_HOME/share/tessdata
 	chown -R fedora:fedora /opt/islandora/share/tessdata/eng.*
 #fi

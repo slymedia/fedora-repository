@@ -20,9 +20,9 @@ else
 	echo "Starting fedora export on `date`" 2>&1 | tee -a $LOG_FILE
 	echo "Found the following Namespaces:" 2>&1 | tee -a $LOG_FILE
 	echo "" 2>&1 | tee -a $LOG_FILE
-	${ISLANDORA_HOME}/bin/get_namespaces.sh 2>&1 | tee -a $LOG_FILE
+	${REPOSITORY_HOME}/bin/get_namespaces.sh 2>&1 | tee -a $LOG_FILE
 
-	for namespace in `cat ${ISLANDORA_HOME}/etc/namespaces.conf`;
+	for namespace in `cat ${REPOSITORY_HOME}/etc/namespaces.conf`;
 	do
 		collection=`echo $namespace | awk -F: '{print $1}'`
 		echo "" 2>&1 | tee -a $LOG_FILE
@@ -37,7 +37,7 @@ else
 		fi
 		echo "Done." 2>&1 | tee -a $LOG_FILE
 	
-		for pid in `${ISLANDORA_HOME}/bin/find_pids.sh $collection`;
+		for pid in `${REPOSITORY_HOME}/bin/find_pids.sh $collection`;
 		do
 			filename=`echo $pid | sed 's|:|_|g'`
 			if [ -f $EXPORT_DIR/$collection/$filename.xml ]

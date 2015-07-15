@@ -1,12 +1,10 @@
 ##!/bin/bash
 #
-# Script to automatically install Drupal, Fedora Commons, and Islandora Modules
+# Script to automatically install a Fedora Commons server ready for an Islandora website
 #
 
 # Assumptions:
 #
-#  - Databases are created in MySQL and you have DB names, users, and passwords for them. 
-#     ( one for Fedora Commons and one for Drupal )
 #
 # - Make sure you set the usernames and passwords for the environment variables below. 
 #     Then run the installer.sh script to complete the installation of fedora commons. 
@@ -31,15 +29,14 @@ export SITES_ALL_MODULES=$WEB_ROOT/sites/all/modules
 export SITES_ALL_LIB=$WEB_ROOT/sites/all/libraries
 export FEDORA_VERSION="3.8"                        # Valid versions 3.5 and 3.8
 export SOLR_VERSION="4.2.0"                        # Valid versions 3.6.2 and 4.2.0
-export GSEARCH_VERSION="2.6"	                     # Valid versions 2.4.2 and 2.6
-export DJATOKA_VERSION="adore"                     # Valid versions freelib or adore
-export DURACLOUD="No"                              # Install duracloud
+export GSEARCH_VERSION="2.6"	                   # Valid versions 2.4.2 and 2.6
+export DJATOKA_VERSION="adore"                     # Valid versions adore
 #
 ## Variables to be passed to env.sh
 export FEDORA_HOME=$INSTALL_PREFIX/fedora
 export FEDORA_USER=fedora
 export FEDORA_USER_PASS='fedora2014'
-export ISLANDORA_HOME=$INSTALL_PREFIX
+export REPOSITORY_HOME=$INSTALL_PREFIX
 export SOLR_HOME=$INSTALL_PREFIX/solr
 export JAVA_HOME=${INSTALL_PREFIX}/java
 #
@@ -48,19 +45,8 @@ export JAVA_HOME=${INSTALL_PREFIX}/java
 # Note: be careful using regular expression characters in passwords. Be sure to escape them
 #
 export INSTALL_MYSQL="Yes"                          # Yes or No for installing Mysqld locally on machine
-# EDIT changed Root MySQL to hpc root pass. 
 export ROOT_MYSQL_PASS='mysqlroot'                  # If Yes to installing MySQL set the root user password
 export DB_SERVER=localhost
-export INSTALL_DRUPAL="No"
-export INSTALL_ISLANDORA="No"
-export DRUPAL_ROOT=$WEB_ROOT		                    # Top level of the drupal web root
-export DRUPAL_DB_NAME="drupal"          	          # Drupal database name
-export DRUPAL_DB_USER="drupal"          	          # Drupal db username for settings.php file
-export DRUPAL_DB_PASS='drupalpass'           	      # Drupal db password for settings.php file
-export DRUPAL_ADMIN_USER="IslandoraAdmin"           # Drupal admin username to log into Drupal Site
-export DRUPAL_ADMIN_PASS='islandorapass'      		  # Drupal admin password to log into Drupal Site
-export DRUPAL_SITE_NAME="Islandora Sandbox"         # Drupal site name - displayed on the web site
-export DRUPAL_DB_PREFIX=""
 export FEDORA_DB_NAME="fedora3"        		          # Name of fedora MySQL database -> fedora3 is recommended
 export FEDORA_DB_USER="fedoradb"        		        # Fedora db username -> for fedora.fcfg file
 export FEDORA_DB_PASS='fedoradbpass'        	      # Fedora db password -> for fedora.fcfg file
@@ -99,6 +85,8 @@ sed -i 's|SMTP_BLOCK = "0"|SMTP_BLOCK = "1"|g' /etc/csf/csf.conf
 sed -i 's|LF_SCRIPT_ALERT = "0"|LF_SCRIPT_ALERT = "1"|g' /etc/csf/csf.conf
 sed -i 's|SYSLOG_CHECK = "0"|SYSLOG_CHECK = "300"|g' /etc/csf/csf.conf
 sed -i 's|PT_ALL_USERS = "0"|PT_ALL_USERS = "1"|g' /etc/csf/csf.conf
+sed -i 's|PT_USERMEM = "200"|PT_USERMEM = "350"|g' /etc/csf/csf.conf
+
 #
 # update sshd
 #
@@ -156,18 +144,9 @@ script -ac ./apache.install ${INSTALL_LOG}
 if [ $INSTALL_MYSQL == "Yes" ]; then
     script -ac ./mysql.install ${INSTALL_LOG}
 fi
-if [ $INSTALL_DRUPAL == "Yes" ]; then
-script -ac ./drupal.install ${INSTALL_LOG}
-fi
 script -ac ./fedora.install ${INSTALL_LOG}
 script -ac ./gsearch.install ${INSTALL_LOG}
 script -ac ./solr.install ${INSTALL_LOG}
 script -ac ./djatoka.install ${INSTALL_LOG}
-if [ $DURACLOUD == "Yes" ]; then
-script -ac ./duracloud.install ${INSTALL_LOG}
-fi
-if [ $INSTALL_ISLANDORA == "Yes" ]; then
-script -ac ./islandora_modules.install ${INSTALL_LOG}
-fi
 script -ac ./set_permissions.sh ${INSTALL_LOG}
 reboot

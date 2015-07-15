@@ -4,8 +4,8 @@
 # this script will import a collection from a directory of xml objects
 # it takes one argument of the directory to ingest the objects from
 
-. /opt/islandora/etc/env.sh
-. /opt/islandora/etc/database.sh
+. /opt/fedora-repository/etc/env.sh
+. /opt/fedora-repository/etc/database.sh
 
 INGEST_DIR=$1
 LOG_FILE=${FEDORA_HOME}/server/logs/fedora-ingest.log

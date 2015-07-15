@@ -37,7 +37,7 @@ else
                 fi
                 echo "Done." 2>&1 | tee -a $LOG_FILE
                 
-		for pid in `${ISLANDORA_HOME}/bin/find_pids.sh $collection`;
+		for pid in `${REPOSITORY_HOME}/bin/find_pids.sh $collection`;
                 do
                         filename=`echo $pid | sed 's|:|_|g'`
                         if [ -f $EXPORT_DIR/$collection/$filename.xml ]

@@ -21,7 +21,7 @@ else
 	echo "Starting fedora purge on `date`" 2>&1 | tee -a $LOG_FILE
 	echo "Purging Collection: $COLLECTION" 2>&1 | tee -a $LOG_FILE
 	echo "" 2>&1 | tee -a $LOG_FILE
-	for pid in `${ISLANDORA_HOME}/bin/find_pids.sh $COLLECTION`;
+	for pid in `${REPOSITORY_HOME}/bin/find_pids.sh $COLLECTION`;
   do
     ${FEDORA_HOME}/client/bin/fedora-purge.sh ${FULL_SERVER_NAME} 8080 ${FEDORA_ADMIN_USER} ${FEDORA_ADMIN_PASS} $pid http "" 2>&1 | tee -a $LOG_FILE
   done

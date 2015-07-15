@@ -138,7 +138,7 @@ chown -R $FEDORA_USER:$FEDORA_USER $FEDORA_HOME
 #
 # set up a system startup init.d script to start fedora at boot
 #
-cp $ISLANDORA_HOME/etc/init.d-fedora /etc/init.d/fedora
+cp $REPOSITORY_HOME/etc/init.d-fedora /etc/init.d/fedora
 chown root:root /etc/init.d/fedora
 chmod 755 /etc/init.d/fedora
 chkconfig --add fedora
