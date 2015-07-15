@@ -1,0 +1,23 @@
+# Islandora Software Installation Framework (ISIF)
+# by Steve Young (SLY), Hamilton College 2014
+#
+# is licensed under a Creative Commons Attribution 4.0 International License.
+# http://creativecommons.org/licenses/by/4.0/deed.en_US
+# Based on a work at http://github.com/dhinitiative/islandora.git.
+# Permissions beyond the scope of this license may be available at http://www.hamilton.edu.
+
+#
+# Revisions
+#
+# 2/5/2014 - SLY - Initial Creation
+
+#
+## Leptonica installation
+#
+export PACKAGE_NAME=leptonica
+export PACKAGE_VERSION=1.69
+export PACKAGE_URL="http://www.leptonica.org/source/leptonica-1.69.tar.gz"
+export PACKAGE_UNCOMPRESS="tar -zxvf "
+export PACKAGE_TARFILE="leptonica-1.69.tar.gz"
+export PACKAGE_DIR_UNCOMPRESSED=$PACKAGE_NAME-$PACKAGE_VERSION
+export EXTRA_CONFIGURE_ARGS=""

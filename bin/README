@@ -1,0 +1,25 @@
+Islandora Software Installation Framework (ISIF)
+by Steve Young (SLY), Hamilton College 2014
+
+is licensed under a Creative Commons Attribution 4.0 International License.
+Based on a work at http://github.com/dhinitiative/islandora.git.
+Permissions beyond the scope of this license may be available at http://www.hamilton.edu.
+
+#
+# Revisions
+#
+# 2/5/2014 - SLY - Initial Creation
+
+
+This is the bin directory. 
+
+If you allow login's for the fedora user this user can run these scripts as:
+start_fedora
+stop_fedora
+
+${ISLANDORA_HOME}/bin is how it's referenced and is already included in the environment
+setup. So anything put in here and made executable will be able to be called without
+using the full path to them. 
+
+Also binaries that are compiled from software_dependancies.install are linked to this 
+directory. 

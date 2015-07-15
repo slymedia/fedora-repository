@@ -1,0 +1,24 @@
+# Islandora Software Installation Framework (ISIF)
+# by Steve Young (SLY), Hamilton College 2014
+#
+# is licensed under a Creative Commons Attribution 4.0 International License.
+# http://creativecommons.org/licenses/by/4.0/deed.en_US
+# Based on a work at http://github.com/dhinitiative/islandora.git.
+# Permissions beyond the scope of this license may be available at http://www.hamilton.edu.
+
+#
+# Revisions
+#
+# 2/5/2014 - SLY - Initial Creation
+
+
+#
+## Dependancy software installation of fits.sh
+#
+export PACKAGE_NAME=fits
+export PACKAGE_VERSION=0.6.2
+export PACKAGE_URL="https://fits.googlecode.com/files/fits-0.6.2.zip"
+export PACKAGE_UNCOMPRESS="unzip -d $ISLANDORA_PKGS "
+export PACKAGE_TARFILE="fits-0.6.2.zip"
+export PACKAGE_DIR_UNCOMPRESSED=$PACKAGE_NAME-$PACKAGE_VERSION
+export EXTRA_CONFIGURE_ARGS=""

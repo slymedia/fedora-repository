@@ -1,0 +1,23 @@
+# Islandora Software Installation Framework (ISIF)
+# by Steve Young (SLY), Hamilton College 2014
+#
+# is licensed under a Creative Commons Attribution 4.0 International License.
+# http://creativecommons.org/licenses/by/4.0/deed.en_US
+# Based on a work at http://github.com/dhinitiative/islandora.git.
+# Permissions beyond the scope of this license may be available at http://www.hamilton.edu.
+
+#
+# Revisions
+#
+# 2/5/2014 - SLY - Initial Creation
+
+#
+## Tesseract installation
+#
+export PACKAGE_NAME=tesseract
+export PACKAGE_VERSION=3.02.02
+export PACKAGE_URL="https://tesseract-ocr.googlecode.com/files/tesseract-ocr-3.02.02.tar.gz"
+export PACKAGE_UNCOMPRESS="tar -zxvf "
+export PACKAGE_TARFILE="tesseract-ocr-3.02.02.tar.gz"
+export PACKAGE_DIR_UNCOMPRESSED="tesseract-ocr"
+export EXTRA_CONFIGURE_ARGS="--with-extra-libraries=$ISLANDORA_HOME/lib"

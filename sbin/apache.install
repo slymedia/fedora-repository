@@ -1,0 +1,71 @@
+#!/bin/bash -x
+# Islandora Software Installation Framework (ISIF)
+# by Steve Young (SLY), Hamilton College 2014
+#
+# is licensed under a Creative Commons Attribution 4.0 International License.
+# http://creativecommons.org/licenses/by/4.0/deed.en_US
+# Based on a work at http://github.com/dhinitiative/islandora.git.
+# Permissions beyond the scope of this license may be available at http://www.hamilton.edu.
+
+#
+# Revisions
+#
+# 2/5/2014 - SLY - Initial Creation
+
+
+#
+# Script to automatically install apache
+#
+# 1/9/2014 SLY
+
+#
+#
+# Source environment
+. ../etc/env.sh
+. ../etc/database.sh
+
+#
+# install apache
+#
+yum -y install httpd
+yum -y install php
+yum -y install php-pdo
+yum -y install php-gd
+yum -y install php-mbstring
+yum -y install php-xml
+yum -y install php-mysql
+
+#
+# Make sure it's off
+#
+service httpd stop
+
+#
+# change /etc/http.d/conf/httpd.conf
+#
+cp /etc/httpd/conf/httpd.conf /etc/httpd/conf/htppd.conf-orig
+sed -i "s|ServerAdmin root@localhost|ServerAdmin $ADMIN_EMAIL|g" /etc/httpd/conf/httpd.conf
+sed -i "s|#ServerName www.example.com:80|ServerName $SERVER_FULL_NAME:80|g" /etc/httpd/conf/httpd.conf
+sed -i "s|#NameVirtualHost|NameVirtualHost|g" /etc/httpd/conf/httpd.conf
+
+#
+# add in HOSTNAME.conf to /etc/httpd/conf.d
+#
+sed -i "s|EMAIL_TO_CHANGE|$ADMIN_EMAIL|g" ../etc/apache.conf
+sed -i "s|SERVER_NAME_TO_CHANGE|$SERVER_FULL_NAME|g" ../etc/apache.conf
+sed -i "s|DRUPAL_ROOT_TO_CHANGE|$DRUPAL_ROOT|g" ../etc/apache.conf
+
+cp ../etc/apache.conf /etc/httpd/conf.d/$SERVER_NAME.conf
+
+#
+# start httpd
+#
+chkconfig httpd on
+service httpd start
+
+
+#
+# Proxy pass config https://wiki.duraspace.org/pages/viewpage.action?pageId=34658947
+#
+#cat ../etc/apache-proxy-pass.cfg >> $WEB_ROOT/.htaccess
+
