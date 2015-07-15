@@ -1,1 +1,35 @@
-README
+This is the packages directory. 
+
+Initially this will be empty except for the Makefile. 
+
+This is how we compile in source code software and integrate
+it into the software stack. At inital install it does a few
+packages like lame, tesseract, leptonica, fits. Each package 
+has a config file stored in islandora/etc/packages. It looks 
+something like this: 
+
+#
+## LAME installation
+#
+export PACKAGE_NAME=lame
+export PACKAGE_VERSION=3.99.5
+export PACKAGE_URL="http://sourceforge.net/projects/lame/files/lame/3.99/lame-3.99.5.tar.gz/download"
+export PACKAGE_UNCOMPRESS="tar -zxvf "
+export PACKAGE_TARFILE="lame-3.99.5.tar.gz"
+export PACKAGE_DIR_UNCOMPRESSED=$PACKAGE_NAME-$PACKAGE_VERSION
+
+If you place a file called <package-name>.package it will get built using the
+above template to download and build the software. The general process for building
+most software manually goes like this:
+
+cd /opt/islandora/src
+wget <URL to .tar.gz file of the software>
+tar -zxvf package_name-package_version.tar.gz
+cd package_name-package_version
+./configure --prefix=/opt/islandora/packages/package_name-package_version
+make
+make install
+cd /opt/islandora/packages/package_name-package_version/
+cp ../Makefile .
+../../sbin/create_package_makefile.sh
+make install

@@ -1,1 +1,27 @@
-README
+Islandora Software Installation Framework (ISIF)
+by Steve Young (SLY), Hamilton College 2014
+
+is licensed under a Creative Commons Attribution 4.0 International License.
+http://creativecommons.org/licenses/by/4.0/deed.en_US
+Based on a work at http://github.com/dhinitiative/islandora.git.
+Permissions beyond the scope of this license may be available at http://www.hamilton.edu.
+
+#
+# Revisions
+#
+# 2/5/2014 - SLY - Initial Creation
+
+
+This is the etc directory. 
+
+It holds most of the pre-configured config files used to do the installation. 
+
+It also holds env.sh and database.sh which are used to declare 
+the environement variables for scripts when needed. Most of the 
+time only sourcing of env.sh is needed for the software to run. 
+database.sh holds database and account info in case you need it 
+for scripting and it's used in initally setting up the software
+during the install. 
+
+
+
