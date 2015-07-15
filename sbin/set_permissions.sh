@@ -1,22 +1,8 @@
 #!/bin/bash -x
 
-# Islandora Software Installation Framework (ISIF)
-# by Steve Young (SLY), Hamilton College 2014
-#
-# is licensed under a Creative Commons Attribution 4.0 International License.
-# http://creativecommons.org/licenses/by/4.0/deed.en_US
-# Based on a work at http://github.com/dhinitiative/islandora.git.
-# Permissions beyond the scope of this license may be available at http://www.hamilton.edu.
-
-#
-# Revisions
-#
-# 2/5/2014 - SLY - Initial Creation
-
-#
-#
 #
 # Source environment
+#
 . ../etc/env.sh
 . ../etc/database.sh
 
@@ -43,10 +29,3 @@ chmod 755 /etc/init.d/fedora
 chmod -R 640 ${REPOSITORY_HOME}/etc
 chmod 755 ${REPOSITORY_HOME}/etc
 chmod -R 644 ${REPOSITORY_HOME}/etc/env.sh
-
-#
-# modify the gsearch files.. they have hardcoded /usr/local/fedora but we're installing in /opt/fedora
-#
-sed -i "s|\/usr\/local\/fedora|${FEDORA_HOME}|g" ${CATALINA_HOME}/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/foxmlToSolr.xslt  
-sed -i "s|\/usr\/local\/fedora|${FEDORA_HOME}|g" ${CATALINA_HOME}/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/slurp_all_MODS_to_solr.xslt
-

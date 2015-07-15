@@ -1,27 +1,9 @@
 #!/bin/bash -x
-# Islandora Software Installation Framework (ISIF)
-# by Steve Young (SLY), Hamilton College 2014
-#
-# is licensed under a Creative Commons Attribution 4.0 International License.
-# http://creativecommons.org/licenses/by/4.0/deed.en_US
-# Based on a work at http://github.com/dhinitiative/islandora.git.
-# Permissions beyond the scope of this license may be available at http://www.hamilton.edu.
-
-#
-# Revisions
-#
-# 2/5/2014 - SLY - Initial Creation
-
 
 #
 # Script to automatically Fedora Commons
 #
-# 1/9/2014 SLY
 
-# Assumptions:
-#
-#  - Databases are created in MySQL and you have DB names, users, and passwords for them. 
-#     ( one for Fedora Commons and one for Drupal )
 #
 #
 # Source environment
@@ -41,51 +23,6 @@ install_properties_file="install.properties-fedora"
 ## Create Fedora DB and user
 #
 mysql -u root -p$ROOT_MYSQL_PASS -e "create database $FEDORA_DB_NAME; GRANT ALL PRIVILEGES ON $FEDORA_DB_NAME.* TO $FEDORA_DB_USER@localhost IDENTIFIED BY '$FEDORA_DB_PASS'"
-
-if [ $FEDORA_VERSION == "3.5" ]; then
-  #
-  # Install Fedora Commons 3.5
-  #
-  ## get software
-  wget -N -P $SRC_DIR http://downloads.sourceforge.net/fedora-commons/fcrepo-installer-3.5.jar
-  cd $SRC_DIR
-  #
-  ## create install.properties
-  #
-  cp ../etc/install.properties-fedora $install_properties_file
-  sed -i "s/ENTER_DATE/`date`/" $install_properties_file
-  sed -i "s/DATABASE_SERVER_TO_CHANGE/$DB_SERVER/g" $install_properties_file
-  sed -i "s/DATABASE_NAME_TO_CHANGE/$FEDORA_DB_NAME/g" $install_properties_file
-  sed -i "s/DATABASE_PASSWORD_TO_CHANGE/$FEDORA_DB_PASS/g" $install_properties_file
-  sed -i "s/DATABASE_USER_TO_CHANGE/$FEDORA_DB_USER/g" $install_properties_file
-  sed -i "s|CATALINA_HOME_TO_CHANGE|$CATALINA_HOME|g" $install_properties_file
-  sed -i "s|FEDORA_HOME_TO_CHANGE|$FEDORA_HOME|g" $install_properties_file
-  sed -i "s/FEDORA_ADMIN_PASS_TO_CHANGE/$FEDORA_ADMIN_PASS/g" $install_properties_file
-  #
-  ## Fresh fedora commons install
-  #
-  ${JAVA_HOME}/bin/java -jar fcrepo-installer-3.5.jar $install_properties_file
-  #
-	# Edit fedora describe page
-	#
-	# sed -i "s/<param name="fedoraServerHost" value="localhost">/<param name="fedoraServerHost" value="$SERVER_FULL_NAME">/g" $FEDORA_HOME/server/config/fedora.fcfg
-	sed -i "s/value\=\"localhost\"/value\=\"$SERVER_FULL_NAME\"/g" $FEDORA_HOME/server/config/fedora.fcfg
-	# sed -i "s/<param name="gSearchRESTURL" value="http://localhost:8080/fedoragsearch/rest">/<param name="gSearchRESTURL" value="http://$SERVER_FULL_NAME:8080/fedoragsearch/rest">/g" $FEDORA_HOME/server/config/fedora.fcfg	
-	# sed -i "s/<param name="pidNamespace" value="changeme">/<param name="pidNamespace" value="changeme">/g" $FEDORA_HOME/server/config/fedora.fcfg
-	# sed -i "s/<param name="adminEmailList" value="bob@example.org sally@example.org">/<param name="adminEmailList" value="$ADMIN_EMAIL">/g" $FEDORA_HOME/server/config/fedora.fcfg
-	sed -i "s/name\=\"adminEmailList\" value\=\"bob\@example\.org sally\@example\.org\"/name\=\"adminEmailList\" value\=\"$ADMIN_EMAIL\"/g" $FEDORA_HOME/server/config/fedora.fcfg 
-	# sed -i "s/<param name="repositoryName" value="Fedora Repository">/<param name="repositoryName" value="Fedora Repository">/g" $FEDORA_HOME/server/config/fedora.fcfg
-	# sed -i "s/<param name="httpClientMaxConnectionsPerHost" value="5">/ <param name="httpClientMaxConnectionsPerHost" value="25">/g" $FEDORA_HOME/server/config/fedora.fcfg
-	sed -i "s/name\=\"httpClientMaxConnectionsPerHost\" value\=\"5\"/name\=\"httpClientMaxConnectionsPerHost\" value\=\"25\"/g" $FEDORA_HOME/server/config/fedora.fcfg
-	# sed -i "s/<param name="indexDCFields" value="true">/<param name="indexDCFields" value="false">/g" $FEDORA_HOME/server/config/fedora.fcfg
-	sed -i "s/name\=\"indexDCFields\" value\=\"true\"/name\=\"indexDCFields\" value\=\"false\"/g" $FEDORA_HOME/server/config/fedora.fcfg
-	sed -i "s/autoChecksum\" value=\"false/autoChecksum\" value=\"true/g" $FEDORA_HOME/server/config/fedora.fcfg
-	# 
-	# Update datastore structure in $FEDORA_HOME/server/config/spring/akubra-llstore.xml
-	#
-	# change  <constructor-arg value="##" /> to <constructor-arg value=“##/##” /> for fsObjectStoreMapper and fsDatastreamStoreMapper
-	sed -i "s/constructor-arg value\=\"\#\#\"/constructor-arg value\=\"\#\#\/\#\#\"/g" $FEDORA_HOME/server/config/spring/akubra-llstore.xml
-fi
 
 if [ $FEDORA_VERSION == "3.8" ]; then
   #

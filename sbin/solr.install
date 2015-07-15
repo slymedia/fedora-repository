@@ -1,45 +1,9 @@
 #!/bin/bash -x
-# Islandora Software Installation Framework (ISIF)
-# by Steve Young (SLY), Hamilton College 2014
-#
-# is licensed under a Creative Commons Attribution 4.0 International License.
-# http://creativecommons.org/licenses/by/4.0/deed.en_US
-# Based on a work at http://github.com/dhinitiative/islandora.git.
-# Permissions beyond the scope of this license may be available at http://www.hamilton.edu.
-
-#
-# Revisions
-#
-# 2/5/2014 - SLY - Initial Creation
-
-
-#
-# Script to automatically Fedora Commons
-#
-# 1/9/2014 SLY
-
-# Assumptions:
-#
-#  - Databases are created in MySQL and you have DB names, users, and passwords for them. 
-#     ( one for Fedora Commons and one for Drupal )
-#
 #
 # Source environment
+#
 . ../etc/env.sh
 . ../etc/database.sh
-
-if [ $SOLR_VERSION == "3.6.2" ]; then
-  #
-  # install Solr 3.6.2
-  #
-  cd $SRC_DIR
-  wget -N -P $SRC_DIR http://archive.apache.org/dist/lucene/solr/3.6.2/apache-solr-3.6.2.tgz
-  tar -zxvf apache-solr-3.6.2.tgz
-  chown -R $FEDORA_USER:$FEDORA_USER apache-solr-3.6.2
-  cp apache-solr-3.6.2/example/webapps/solr.war ${FEDORA_HOME}/tomcat/webapps
-  cp -r apache-solr-3.6.2/example/solr $SOLR_HOME
-  sleep 60   # wait for war to load in fedora
-fi
 
 if [ $SOLR_VERSION == "4.2.0" ]; then
   #
