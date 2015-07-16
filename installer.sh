@@ -19,18 +19,18 @@
 #
 ## Set up installation variables  (CHANGE THESE BEFORE RUNNING THIS SCRIPT)
 #
-export SERVER_NAME=`hostname -s`                          # set server short name
-export SERVER_FULL_NAME=`hostname -f`    # set server full name
-export ADMIN_EMAIL='youremail@domain.com'          # enter your email address to get messages from the server
+export SERVER_NAME=`hostname -s`                        # set server short name
+export SERVER_FULL_NAME=`hostname -f`                   # set server full name
+export ADMIN_EMAIL='youremail@domain.com'               # enter your email address to get messages from the server
 export INSTALL_PREFIX=`pwd`
 export WEB_ROOT=/var/www/html
-export IP_ADDR="xxx.xxx.xxx.xxx"                   # IP address of this server (ifconfig -a). 
+export IP_ADDR="xxx.xxx.xxx.xxx"                        # IP address of this server (ifconfig -a). 
 export SITES_ALL_MODULES=$WEB_ROOT/sites/all/modules
 export SITES_ALL_LIB=$WEB_ROOT/sites/all/libraries
-export FEDORA_VERSION="3.8"                        # Valid versions 3.5 and 3.8
-export SOLR_VERSION="4.2.0"                        # Valid versions 3.6.2 and 4.2.0
-export GSEARCH_VERSION="2.6"	                   # Valid versions 2.4.2 and 2.6
-export DJATOKA_VERSION="adore"                     # Valid versions adore
+export FEDORA_VERSION="3.8"                             # Valid versions 3.5 and 3.8
+export SOLR_VERSION="4.2.0"                             # Valid versions 3.6.2 and 4.2.0
+export GSEARCH_VERSION="2.6"	                        # Valid versions 2.4.2 and 2.6
+export DJATOKA_VERSION="adore"                          # Valid versions adore
 #
 ## Variables to be passed to env.sh
 export FEDORA_HOME=$INSTALL_PREFIX/fedora
@@ -44,16 +44,16 @@ export JAVA_HOME=${INSTALL_PREFIX}/java
 #
 # Note: be careful using regular expression characters in passwords. Be sure to escape them
 #
-export INSTALL_MYSQL="Yes"                          # Yes or No for installing Mysqld locally on machine
-export ROOT_MYSQL_PASS='mysqlroot'                  # If Yes to installing MySQL set the root user password
+export INSTALL_MYSQL="Yes"                              # Yes or No for installing Mysqld locally on machine
+export ROOT_MYSQL_PASS='mysqlroot'                      # If Yes to installing MySQL set the root user password
 export DB_SERVER=localhost
-export FEDORA_DB_NAME="fedora3"        		          # Name of fedora MySQL database -> fedora3 is recommended
+export FEDORA_DB_NAME="fedora3"        		            # Name of fedora MySQL database -> fedora3 is recommended
 export FEDORA_DB_USER="fedoradb"        		        # Fedora db username -> for fedora.fcfg file
-export FEDORA_DB_PASS='fedoradbpass'        	      # Fedora db password -> for fedora.fcfg file
-export FEDORA_ADMIN_USER="fedoraAdmin"              # Username for http://localhost:8080/fedora/admin
-export FEDORA_ADMIN_PASS='fedoraadminpass'          # Password for http://localhost:8080/fedora/admin
-export FEDORA_GSEARCH_ADMIN_USER="fgsAdmin"         # Username for http://localhost:8080/fedoragsearch
-export FEDORA_GSEARCH_ADMIN_PASS='fgsadminpass'     # Password for http://localhost:8080/fedoragsearch
+export FEDORA_DB_PASS='fedoradbpass'        	        # Fedora db password -> for fedora.fcfg file
+export FEDORA_ADMIN_USER="fedoraAdmin"                  # Username for http://localhost:8080/fedora/admin
+export FEDORA_ADMIN_PASS='fedoraadminpass'              # Password for http://localhost:8080/fedora/admin
+export FEDORA_GSEARCH_ADMIN_USER="fgsAdmin"             # Username for http://localhost:8080/fedoragsearch
+export FEDORA_GSEARCH_ADMIN_PASS='fgsadminpass'         # Password for http://localhost:8080/fedoragsearch
 export INSTALL_LOG=${INSTALL_PREFIX}/installation.log
 
 # Begin CSF Firewall installation
