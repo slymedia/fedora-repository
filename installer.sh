@@ -91,20 +91,6 @@ sed -i 's|PT_USERMEM = "200"|PT_USERMEM = "350"|g' /etc/csf/csf.conf
 # update sshd
 #
 sed -i 's|#UseDNS yes|UseDNS no|g' /etc/ssh/sshd_config
-#
-# update php
-#
-sed -i 's|enable_dl = On|enable_dl = Off|g' /usr/local/lib/php.ini
-#
-# update mysql (per http://dev.mysql.com/doc/mysql-security-excerpt/5.0/en/load-data-local.html)
-# 
-#
-echo "local-infile=0" >> /etc/my.cnf
-#
-# turn off portreserve
-#
-service portreserve stop
-chkconfig portreserve off
 
 /bin/rm -r /tmp/csf
 /bin/rm  /tmp/csf.tgz
@@ -149,4 +135,23 @@ script -ac ./gsearch.install ${INSTALL_LOG}
 script -ac ./solr.install ${INSTALL_LOG}
 script -ac ./djatoka.install ${INSTALL_LOG}
 script -ac ./set_permissions.sh ${INSTALL_LOG}
+
+#
+# security fixes from CSF to apply
+#
+#
+# update php
+#
+sed -i 's|enable_dl = On|enable_dl = Off|g' /usr/local/lib/php.ini
+#
+# update mysql (per http://dev.mysql.com/doc/mysql-security-excerpt/5.0/en/load-data-local.html)
+# 
+#
+echo "local-infile=0" >> /etc/my.cnf
+#
+# turn off portreserve
+#
+service portreserve stop
+chkconfig portreserve off
+
 reboot
