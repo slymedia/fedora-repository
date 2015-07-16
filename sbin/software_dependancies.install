@@ -112,7 +112,8 @@ echo "run the command "alternatives --config java" and set it for java 8" >> /et
 	# Install libx264
 	#
 	cd $SRC_DIR/ffmpeg_sources
-	git clone --depth 1 git://git.videolan.org/x264
+	#git clone --depth 1 git://git.videolan.org/x264
+	git clone git://git.videolan.org/x264.git
 	cd x264
 	./configure --prefix=$REPOSITORY_PKGS/ffmpeg --bindir="$REPOSITORY_PKGS/ffmpeg/bin" --enable-static
 	make
