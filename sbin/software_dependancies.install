@@ -124,7 +124,8 @@ echo "run the command "alternatives --config java" and set it for java 8" >> /et
 	yum -y install gettext
 	yum -y install libtool
 	cd $SRC_DIR/ffmpeg_sources
-	git clone --depth 1 git://git.code.sf.net/p/opencore-amr/fdk-aac
+	#git clone --depth 1 git://git.code.sf.net/p/opencore-amr/fdk-aac
+	git clone http://git.code.sf.net/p/opencore-amr/fdk-aac
 	cd fdk-aac
 	autoreconf -fiv
 	./configure --prefix=$REPOSITORY_PKGS/ffmpeg --disable-shared
