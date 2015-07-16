@@ -125,7 +125,7 @@ cd $REPOSITORY_HOME/sbin
 #
 #---------------------------------------------
 #
-script -ac ./software_dependancies.install ${INSTALL_LOG}
+script -ac ./software_dependencies.install ${INSTALL_LOG}
 script -ac ./apache.install ${INSTALL_LOG}
 if [ $INSTALL_MYSQL == "Yes" ]; then
     script -ac ./mysql.install ${INSTALL_LOG}
