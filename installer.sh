@@ -56,6 +56,46 @@ export FEDORA_GSEARCH_ADMIN_USER="fgsAdmin"             # Username for http://lo
 export FEDORA_GSEARCH_ADMIN_PASS='fgsadminpass'         # Password for http://localhost:8080/fedoragsearch
 export INSTALL_LOG=${INSTALL_PREFIX}/installation.log
 
+cd $INSTALL_PREFIX
+
+#
+# Set up mail alias for root
+#
+sed -i s/\#root\:/root\:/ /etc/aliases
+sed -i s/marc/$ADMIN_EMAIL/ /etc/aliases
+newaliases
+
+
+#---------------------------------------------
+#
+# Configure environment variables
+#
+#---------------------------------------------
+#
+cd $REPOSITORY_HOME/sbin
+./initialize_env.sh    # set islandora env and Database info
+. ../etc/env.sh      # source Islandora environment
+. ../etc/database.sh # source Database information
+
+
+#---------------------------------------------
+#
+# Do the installation
+#
+#---------------------------------------------
+#
+script -ac ./software_dependencies.install ${INSTALL_LOG}
+script -ac ./apache.install ${INSTALL_LOG}
+if [ $INSTALL_MYSQL == "Yes" ]; then
+    script -ac ./mysql.install ${INSTALL_LOG}
+fi
+script -ac ./fedora.install ${INSTALL_LOG}
+script -ac ./gsearch.install ${INSTALL_LOG}
+script -ac ./solr.install ${INSTALL_LOG}
+script -ac ./djatoka.install ${INSTALL_LOG}
+script -ac ./set_permissions.sh ${INSTALL_LOG}
+
+#
 # Begin CSF Firewall installation
 #
 # dependancies
@@ -96,51 +136,6 @@ sed -i 's|#UseDNS yes|UseDNS no|g' /etc/ssh/sshd_config
 
 /bin/rm -r /tmp/csf
 /bin/rm  /tmp/csf.tgz
-cd $INSTALL_PREFIX
-
-
-# End CSF install
-
-#
-# Set up mail alias for root
-#
-sed -i s/\#root\:/root\:/ /etc/aliases
-sed -i s/marc/$ADMIN_EMAIL/ /etc/aliases
-newaliases
-
-
-#---------------------------------------------
-#
-# Configure environment variables
-#
-#---------------------------------------------
-#
-cd $REPOSITORY_HOME/sbin
-./initialize_env.sh    # set islandora env and Database info
-. ../etc/env.sh      # source Islandora environment
-. ../etc/database.sh # source Database information
-
-
-#---------------------------------------------
-#
-# Do the installation
-#
-#---------------------------------------------
-#
-script -ac ./software_dependencies.install ${INSTALL_LOG}
-script -ac ./apache.install ${INSTALL_LOG}
-if [ $INSTALL_MYSQL == "Yes" ]; then
-    script -ac ./mysql.install ${INSTALL_LOG}
-fi
-script -ac ./fedora.install ${INSTALL_LOG}
-script -ac ./gsearch.install ${INSTALL_LOG}
-script -ac ./solr.install ${INSTALL_LOG}
-script -ac ./djatoka.install ${INSTALL_LOG}
-script -ac ./set_permissions.sh ${INSTALL_LOG}
-
-#
-# security fixes from CSF to apply
-#
 #
 # update php
 #
