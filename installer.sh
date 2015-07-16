@@ -86,7 +86,9 @@ sed -i 's|LF_SCRIPT_ALERT = "0"|LF_SCRIPT_ALERT = "1"|g' /etc/csf/csf.conf
 sed -i 's|SYSLOG_CHECK = "0"|SYSLOG_CHECK = "300"|g' /etc/csf/csf.conf
 sed -i 's|PT_ALL_USERS = "0"|PT_ALL_USERS = "1"|g' /etc/csf/csf.conf
 sed -i 's|PT_USERMEM = "200"|PT_USERMEM = "350"|g' /etc/csf/csf.conf
-
+# add ports
+sed -i 's|TCP_IN = "20,21,22,25,53,80,110,143,443,465,587,993,995"|TCP_IN = "20,21,22,25,53,80,443,465,587,993,995,8080,9418"|g' /etc/csf/csf.conf
+sed -i 's|TCP_OUT = "20,21,22,25,53,80,110,113,443,587,993,995"|TCP_OUT = "20,21,22,25,53,80,113,443,587,993,995,8080,9418"|g' /etc/csf/csf.conf
 #
 # update sshd
 #
