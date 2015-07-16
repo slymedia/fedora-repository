@@ -113,7 +113,7 @@ newaliases
 #
 #---------------------------------------------
 #
-cd $ISLANDORA_HOME/sbin
+cd $REPOSITORY_HOME/sbin
 ./initialize_env.sh    # set islandora env and Database info
 . ../etc/env.sh      # source Islandora environment
 . ../etc/database.sh # source Database information
