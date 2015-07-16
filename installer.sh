@@ -19,8 +19,8 @@
 #
 ## Set up installation variables  (CHANGE THESE BEFORE RUNNING THIS SCRIPT)
 #
-export SERVER_NAME=fedora                          # set server short name
-export SERVER_FULL_NAME='fedora.somedomain.com'    # set server full name
+export SERVER_NAME=`hostname -s`                          # set server short name
+export SERVER_FULL_NAME=`hostname -f`    # set server full name
 export ADMIN_EMAIL='youremail@domain.com'          # enter your email address to get messages from the server
 export INSTALL_PREFIX=`pwd`
 export WEB_ROOT=/var/www/html
