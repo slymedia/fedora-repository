@@ -102,6 +102,7 @@ if [ $INSTALL_CSF == "Yes" ]; then
     #
     # dependancies
     #
+    yum -y install bind-utils
     yum -y install perl-IO-Socket-SSL
     yum -y install perl-libwww-perl
     yum -y install perl-Crypt-SSLeay perl-Net-SSLeay
