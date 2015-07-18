@@ -46,14 +46,14 @@ INSTALL = ln -s
 # ROOTs are set to /tmp/local to insure that the believers in magic
 # do as little damage as possible.
 
-BINROOT   = /opt/fedora-repository
-ETCROOT   = /opt/fedora-repository
-INCROOT   = /opt/fedora-repository
-INFOROOT  = /opt/fedora-repository
-LIBROOT   = /opt/fedora-repository
-MANROOT   = /opt/fedora-repository
-SBINROOT  = /opt/fedora-repository
-SHAREROOT = /opt/fedora-repository
+BINROOT   = INSTALL_PREFIX_TO_CHANGE
+ETCROOT   = INSTALL_PREFIX_TO_CHANGE
+INCROOT   = INSTALL_PREFIX_TO_CHANGE
+INFOROOT  = INSTALL_PREFIX_TO_CHANGE
+LIBROOT   = INSTALL_PREFIX_TO_CHANGE
+MANROOT   = INSTALL_PREFIX_TO_CHANGE
+SBINROOT  = INSTALL_PREFIX_TO_CHANGE
+SHAREROOT = INSTALL_PREFIX_TO_CHANGE
 #
 # This is where binaries should be copied
 BINDIR = ${BINROOT}/bin
