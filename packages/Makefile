@@ -46,14 +46,14 @@ INSTALL = ln -s
 # ROOTs are set to /tmp/local to insure that the believers in magic
 # do as little damage as possible.
 
-BINROOT   = /opt/islandora
-ETCROOT   = /opt/islandora
-INCROOT   = /opt/islandora
-INFOROOT  = /opt/islandora
-LIBROOT   = /opt/islandora
-MANROOT   = /opt/islandora
-SBINROOT  = /opt/islandora
-SHAREROOT = /opt/islandora
+BINROOT   = /opt/fedora-repository
+ETCROOT   = /opt/fedora-repository
+INCROOT   = /opt/fedora-repository
+INFOROOT  = /opt/fedora-repository
+LIBROOT   = /opt/fedora-repository
+MANROOT   = /opt/fedora-repository
+SBINROOT  = /opt/fedora-repository
+SHAREROOT = /opt/fedora-repository
 #
 # This is where binaries should be copied
 BINDIR = ${BINROOT}/bin
