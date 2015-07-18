@@ -248,5 +248,5 @@ echo "run the command "alternatives --config java" and set it for java 8" >> /et
 	cd $SRC_DIR
 	tar -zxvf tesseract-ocr-3.02.eng.tar.gz
 	cp -r tesseract-ocr/tessdata/eng.* $REPOSITORY_HOME/share/tessdata
-	chown -R fedora:fedora /opt/islandora/share/tessdata/eng.*
+	chown -R fedora:fedora $REPOSITORY_HOME/share/tessdata/eng.*
 #fi
