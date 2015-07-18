@@ -1,4 +1,5 @@
 #!/bin/bash -x
+. ../etc/env.sh
 
 INSTALL_CMD="install:"
 UNINSTALL_CMD="uninstall:"
@@ -23,4 +24,4 @@ sed -i "s/UNINSTALL_PACKAGE_COMMAND/$UNINSTALL_CMD/" ./Makefile
 #
 # change directory location too
 #
-sed -i "s/INSTALL_PREFIX_TO_CHANGE/$INSTALL/" ./Makefile
+sed -i "s/INSTALL_PREFIX_TO_CHANGE/$INSTALL_PREFIX/" ./Makefile
