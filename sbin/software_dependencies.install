@@ -214,7 +214,7 @@ echo "run the command "alternatives --config java" and set it for java 8" >> /et
 	#
 	# Needed for tesseract to find leptonica
 	#
-	export LIBLEPT_HEADERSDIR=/opt/islandora/packages/leptonica-1.69/include
+	export LIBLEPT_HEADERSDIR=$REPOSITORY_PKGS/leptonica-1.69/include
 
 	#
 	# Install dependancy packages in islandora directory tree
