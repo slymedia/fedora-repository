@@ -1,5 +1,5 @@
 #!/bin/bash -x
-. ../etc/env.sh
+. ../../etc/env.sh
 
 INSTALL_CMD="install:"
 UNINSTALL_CMD="uninstall:"
