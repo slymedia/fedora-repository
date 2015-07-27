@@ -60,8 +60,11 @@ yum -y install xpdf yasm lame lame-libs gdisk
 #
 # ffmpeg2theora
 #
-wget -N -P ../src http://v2v.cc/~j/ffmpeg2theora/ffmpeg2theora-0.29.linux64.bin
-install -m 755 ../src/ffmpeg2theora-0.29.linux64.bin /usr/bin/ffmpeg2theora
+if [ ! -f /usr/bin/ffmpeg2theora ]
+then
+	wget -N -P ../src http://v2v.cc/~j/ffmpeg2theora/ffmpeg2theora-0.29.linux64.bin
+	install -m 755 ../src/ffmpeg2theora-0.29.linux64.bin /usr/bin/ffmpeg2theora
+fi
 #
 # Install ffmpeg from source (https://trac.ffmpeg.org/wiki/CompilationGuide/Centos)
 #
