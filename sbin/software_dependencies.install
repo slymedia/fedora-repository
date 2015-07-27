@@ -58,7 +58,7 @@ rpm -ivh http://download1.rpmfusion.org/free/el/updates/6/i386/rpmfusion-free-re
 # install software
 #
 #yum -y install ffmpeg
-yum -y install xpdf yasm lame lame-libs gdisk
+yum -y install xpdf yasm lame lame-libs gdisk gettext libtool
 #
 # ffmpeg2theora
 #
@@ -78,87 +78,130 @@ cd ffmpeg_sources
 #
 # Install libx264
 #
-cd $SRC_DIR/ffmpeg_sources
-git clone git://git.videolan.org/x264.git
-cd x264
-./configure --prefix=$REPOSITORY_PKGS/ffmpeg --bindir="$REPOSITORY_PKGS/ffmpeg/bin" --enable-static
-make
-make install
-make distclean
+if [ ! -d $SRC_DIR/ffmpeg_sources/x264 ]
+then
+	cd $SRC_DIR/ffmpeg_sources
+	git clone git://git.videolan.org/x264.git
+	cd x264
+	./configure --prefix=$REPOSITORY_PKGS/ffmpeg --bindir="$REPOSITORY_PKGS/ffmpeg/bin" --enable-static
+	make
+	make install
+	make distclean
+else
+	echo "x264 source tree already exists in $SRC_DIR/ffmpeg_sources/x264! "
+fi
 #
 # install libfdk_aac
 #
-yum -y install gettext
-yum -y install libtool
-cd $SRC_DIR/ffmpeg_sources
-git clone http://git.code.sf.net/p/opencore-amr/fdk-aac
-cd fdk-aac
-autoreconf -fiv
-./configure --prefix=$REPOSITORY_PKGS/ffmpeg --disable-shared
-make
-make install
-make distclean
+if [ ! -d $SRC_DIR/ffmpeg_sources/fdk-aac ]
+then
+	cd $SRC_DIR/ffmpeg_sources
+	git clone http://git.code.sf.net/p/opencore-amr/fdk-aac
+	cd fdk-aac
+	autoreconf -fiv
+	./configure --prefix=$REPOSITORY_PKGS/ffmpeg --disable-shared
+	make
+	make install
+	make distclean
+else
+	echo "fdk-aac source tree alreasy exists in $SRC_DIR/ffmpeg_sources/fdk-aac!"
+fi
 #
 # install libopus
 #
-cd $SRC_DIR/ffmpeg_sources
-git clone git://git.opus-codec.org/opus.git
-cd opus
-autoreconf -fiv
-./configure --prefix=$REPOSITORY_PKGS/ffmpeg --disable-shared
-make
-make install
-make distclean
+if [ ! -d $SRC_DIR/ffmpeg_sources/opus ]
+then
+	cd $SRC_DIR/ffmpeg_sources
+	git clone git://git.opus-codec.org/opus.git
+	cd opus
+	autoreconf -fiv
+	./configure --prefix=$REPOSITORY_PKGS/ffmpeg --disable-shared
+	make
+	make install
+	make distclean
+else
+	echo "opus source tree alreasy exists in $SRC_DIR/ffmpeg_sources/opus!"
+fi
 #
 # install libogg
 #
-cd $SRC_DIR/ffmpeg_sources
-curl -O http://downloads.xiph.org/releases/ogg/libogg-1.3.2.tar.gz
-tar xzvf libogg-1.3.2.tar.gz
-cd libogg-1.3.2
-./configure --prefix=$REPOSITORY_PKGS/ffmpeg --disable-shared
-make
-make install
-make distclean
+if [ ! -d $SRC_DIR/ffmpeg_sources/libogg-1.3.2 ]
+then
+	cd $SRC_DIR/ffmpeg_sources
+	curl -O http://downloads.xiph.org/releases/ogg/libogg-1.3.2.tar.gz
+	tar xzvf libogg-1.3.2.tar.gz
+	cd libogg-1.3.2
+	./configure --prefix=$REPOSITORY_PKGS/ffmpeg --disable-shared
+	make
+	make install
+	make distclean
+else
+	echo "fdk-aac source tree alreasy exists in $SRC_DIR/ffmpeg_sources/fdk-aac!"
+fi
 #
 # libvorbis
 #
-cd $SRC_DIR/ffmpeg_sources
-curl -O http://downloads.xiph.org/releases/vorbis/libvorbis-1.3.4.tar.gz
-tar xzvf libvorbis-1.3.4.tar.gz
-cd libvorbis-1.3.4
-./configure --prefix=$REPOSITORY_PKGS/ffmpeg --with-ogg="$REPOSITORY_PKGS/ffmpeg" --disable-shared
-make
-make install
-make distclean
+if [ ! -d $SRC_DIR/ffmpeg_sources/libvorbis-1.3.4 ]
+then
+	cd $SRC_DIR/ffmpeg_sources
+	curl -O http://downloads.xiph.org/releases/vorbis/libvorbis-1.3.4.tar.gz
+	tar xzvf libvorbis-1.3.4.tar.gz
+	cd libvorbis-1.3.4
+	./configure --prefix=$REPOSITORY_PKGS/ffmpeg --with-ogg="$REPOSITORY_PKGS/ffmpeg" --disable-shared
+	make
+	make install
+	make distclean
+else
+	echo "libvorbis source tree alreasy exists in $SRC_DIR/ffmpeg_sources/libvorbis-1.3.4!"
+fi
 #
 # install libvpx
 #
-cd $SRC_DIR/ffmpeg_sources
-git clone --depth 1 https://chromium.googlesource.com/webm/libvpx.git
-cd libvpx
-./configure --prefix="$REPOSITORY_PKGS/ffmpeg" --disable-examples
-make
-make install
-make clean
+if [ ! -d $SRC_DIR/ffmpeg_sources/libvpx ]
+then
+	cd $SRC_DIR/ffmpeg_sources
+	git clone --depth 1 https://chromium.googlesource.com/webm/libvpx.git
+	cd libvpx
+	./configure --prefix="$REPOSITORY_PKGS/ffmpeg" --disable-examples
+	make
+	make install
+	make clean
+else
+	echo "libvpx source tree alreasy exists in $SRC_DIR/ffmpeg_sources/libvpx!"
+fi
 #
 # build ffmpeg
 #
-cd $SRC_DIR/ffmpeg_sources
-git clone --depth 1 git://source.ffmpeg.org/ffmpeg
-cd ffmpeg
-PKG_CONFIG_PATH="$REPOSITORY_PKGS/ffmpeg/lib/pkgconfig" ./configure --prefix="$REPOSITORY_PKGS/ffmpeg" --extra-cflags="-I$REPOSITORY_PKGS/ffmpeg/include" --extra-ldflags="-L$REPOSITORY_PKGS/ffmpeg/lib:/usr/lib64" --bindir="$REPOSITORY_PKGS/ffmpeg/bin" --enable-gpl --enable-nonfree --enable-libfdk_aac --enable-libmp3lame --enable-libopus --enable-libvorbis --enable-libvpx --enable-libx264 --enable-libfreetype --enable-libtheora
-make
-make install
-make distclean
-hash -r
-#
-# install Makefile that populates symlinks from $REPOSITORY_PKGS/ffmpeg to $REPOSITORY_HOME
-#
-cd $REPOSITORY_PKGS/ffmpeg
-../../sbin/create_package_makefile.sh
-make install
-
+if [ ! -d $SRC_DIR/ffmpeg_sources/ffmpeg ]
+then
+	cd $SRC_DIR/ffmpeg_sources
+	git clone --depth 1 git://source.ffmpeg.org/ffmpeg
+	cd ffmpeg
+	PKG_CONFIG_PATH="$REPOSITORY_PKGS/ffmpeg/lib/pkgconfig" ./configure --prefix="$REPOSITORY_PKGS/ffmpeg" --extra-cflags="-I$REPOSITORY_PKGS/ffmpeg/include" --extra-ldflags="-L$REPOSITORY_PKGS/ffmpeg/lib:/usr/lib64" --bindir="$REPOSITORY_PKGS/ffmpeg/bin" --enable-gpl --enable-nonfree --enable-libfdk_aac --enable-libmp3lame --enable-libopus --enable-libvorbis --enable-libvpx --enable-libx264 --enable-libfreetype --enable-libtheora
+	make
+	make install
+	make distclean
+	hash -r
+	#
+	# install Makefile that populates symlinks from $REPOSITORY_PKGS/ffmpeg to $REPOSITORY_HOME
+	#
+	cd $REPOSITORY_PKGS/ffmpeg
+	../../sbin/create_package_makefile.sh
+	make install
+else
+	echo "ffmpeg source tree alreasy exists in $SRC_DIR/ffmpeg_sources/ffmpeg!"
+fi
+if [ -d $REPOSITORY_PKGS/ffmpeg ]
+then
+	#
+	# install Makefile that populates symlinks from $REPOSITORY_PKGS/ffmpeg to $REPOSITORY_HOME
+	#
+	cd $REPOSITORY_PKGS/ffmpeg
+	../../sbin/create_package_makefile.sh
+	make install
+else
+	echo "ffmpeg wasn't built into $REPOSITORY_PKGS/ffmpeg... can't install into $REPOSITORY_PKGS!"
+fi
 cd $SRC_DIR
 #
 # Needed for tesseract to find leptonica
@@ -185,14 +228,23 @@ export LIBLEPT_HEADERSDIR=$REPOSITORY_PKGS/leptonica-1.69/include
 		cd $SRC_DIR
 	done
 
-# link fits.sh 
-ln -s $REPOSITORY_HOME/packages/fits-0.6.2/fits.sh $REPOSITORY_HOME/bin/fits.sh
+if [ -L $REPOSITORY_HOME/bin/fits.sh ]
+then
+	# link fits.sh 
+	ln -s $REPOSITORY_HOME/packages/fits-0.6.2/fits.sh $REPOSITORY_HOME/bin/fits.sh
+else
+	echo "$REPOSITORY_HOME/bin/fits.sh symbolic link already exists!"
+fi
 
-#
-## Add in tesseract language pack
-#
-wget -N -P $SRC_DIR https://tesseract-ocr.googlecode.com/files/tesseract-ocr-3.02.eng.tar.gz
-cd $SRC_DIR
-tar -zxvf tesseract-ocr-3.02.eng.tar.gz
-cp -r tesseract-ocr/tessdata/eng.* $REPOSITORY_HOME/share/tessdata
-chown -R fedora:fedora $REPOSITORY_HOME/share/tessdata/eng.*
+if [ ! -f $REPOSITORY_HOME/share/tessdata/eng.cube.size]
+	#
+	## Add in tesseract language pack
+	#
+	wget -N -P $SRC_DIR https://tesseract-ocr.googlecode.com/files/tesseract-ocr-3.02.eng.tar.gz
+	cd $SRC_DIR
+	tar -zxvf tesseract-ocr-3.02.eng.tar.gz
+	cp -r tesseract-ocr/tessdata/eng.* $REPOSITORY_HOME/share/tessdata
+	chown -R fedora:fedora $REPOSITORY_HOME/share/tessdata/eng.*
+else
+	echo "Tesseract language files already installed!"
+fi
