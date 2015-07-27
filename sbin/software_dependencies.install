@@ -87,6 +87,7 @@ echo "run the command "alternatives --config java" and set it for java 8" >> /et
 	#yum -y install ffmpeg
 	yum -y install xpdf
 	yum -y install lame
+	yum -y install lame-libs
 	yum -y install yasm
 	#
 	# ffmpeg2theora
