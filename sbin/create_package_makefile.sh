@@ -19,9 +19,9 @@ echo $UNINSTALL_CMD
 
 cp ../Makefile .
 
-sed -i "s/INSTALL_PACKAGE_COMMAND/$INSTALL_CMD/" ./Makefile
-sed -i "s/UNINSTALL_PACKAGE_COMMAND/$UNINSTALL_CMD/" ./Makefile
+sed -i 's|INSTALL_PACKAGE_COMMAND|$INSTALL_CMD|' ./Makefile
+sed -i 's|UNINSTALL_PACKAGE_COMMAND|$UNINSTALL_CMD|' ./Makefile
 #
 # change directory location too
 #
-sed -i "s/INSTALL_PREFIX_TO_CHANGE/$INSTALL_PREFIX/" ./Makefile
+sed -i 's|INSTALL_PREFIX_TO_CHANGE|$INSTALL_PREFIX|' ./Makefile
