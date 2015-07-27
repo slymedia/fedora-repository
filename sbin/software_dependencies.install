@@ -43,6 +43,8 @@ then
 	alternatives --install /usr/bin/java java /opt/jdk1.8.0_40/bin/java 3
 	echo "" >> /etc/motd
 	echo "run the command "alternatives --config java" and set it for java 8" >> /etc/motd
+else
+	echo "Java 8 is already installed!"
 fi
 #
 # Enable EPEL
@@ -64,6 +66,8 @@ if [ ! -f /usr/bin/ffmpeg2theora ]
 then
 	wget -N -P ../src http://v2v.cc/~j/ffmpeg2theora/ffmpeg2theora-0.29.linux64.bin
 	install -m 755 ../src/ffmpeg2theora-0.29.linux64.bin /usr/bin/ffmpeg2theora
+else
+	echo "ffmpeg2theora is already installed!"
 fi
 #
 # Install ffmpeg from source (https://trac.ffmpeg.org/wiki/CompilationGuide/Centos)
