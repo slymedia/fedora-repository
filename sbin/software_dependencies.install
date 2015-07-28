@@ -228,7 +228,7 @@ export LIBLEPT_HEADERSDIR=$REPOSITORY_PKGS/leptonica-1.69/include
 		cd $SRC_DIR
 	done
 
-if [ -L $REPOSITORY_HOME/bin/fits.sh ]
+if [! -L $REPOSITORY_HOME/bin/fits.sh ]
 then
 	# link fits.sh 
 	ln -s $REPOSITORY_HOME/packages/fits-0.6.2/fits.sh $REPOSITORY_HOME/bin/fits.sh
@@ -237,6 +237,7 @@ else
 fi
 
 if [ ! -f $REPOSITORY_HOME/share/tessdata/eng.cube.size]
+then
 	#
 	## Add in tesseract language pack
 	#
