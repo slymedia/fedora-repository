@@ -16,6 +16,7 @@ sed -i "s|SOLR_HOME_TO_CHANGE|$SOLR_HOME|g" ../etc/env.sh
 sed -i "s|SOLR_VERSION_TO_CHANGE|$SOLR_VERSION|g" ../etc/env.sh
 sed -i "s|JAVA_HOME_TO_CHANGE|$JAVA_HOME|g" ../etc/env.sh
 sed -i "s|GSEARCH_VERSION_TO_CHANGE|$GSEARCH_VERSION|g" ../etc/env.sh
+sed -i "s|DOC_ROOT_TO_CHANGE|$DOC_ROOT|g" ../etc/env.sh
 
 sed -i "s/DATABASE_SERVER_TO_CHANGE/$DB_SERVER/g" ../etc/database.sh
 sed -i "s/FULL_SERVER_NAME_TO_CHANGE/$SERVER_FULL_NAME/g" ../etc/database.sh
