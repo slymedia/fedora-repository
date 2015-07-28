@@ -209,7 +209,7 @@ cd $SRC_DIR
 export LIBLEPT_HEADERSDIR=$REPOSITORY_PKGS/leptonica-1.69/include
 
 #
-# Install dependancy packages in islandora directory tree
+# Install dependency packages in repository directory tree
 #
 	for PKG in `ls ../etc/packages | grep .package`
 	do
