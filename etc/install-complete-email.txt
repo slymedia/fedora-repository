@@ -1,0 +1,58 @@
+This is an automatic message from your new Fedora server. 
+
+** Do Not Reply to this message as it will return back to you **
+
+Your server has been configured with the following: 
+
+SERVER DETAILS
+---------------------------------------------------
+SERVER NAME: 			$SERVER_NAME
+SERVER FULL NAME:		$SERVER_FULL_NAME
+ADMINISTRATOR EMAIL:		$ADMIN_EMAIL
+IP ADDRESS:			$IP_ADDR
+
+SOFTWARE DETAILS
+---------------------------------------------------
+INSTALLATION DIRECTORY:		$INSTALL_PREFIX
+GSEARCH VERSION:		$GSEARCH_VERSION
+DJATOKA VERSION:		$DJATOKA_VERSION
+SOLR VERSION:			$SOLR_VERSION
+SOLR HOME:			$SOLR_HOME
+JAVA HOME:			$JAVA_HOME
+
+
+Fedora Commons Details
+---------------------------------------------------
+FEDORA VERSION:			$FEDORA_VERSION
+FEDORA HOME:			$FEDORA_HOME
+
+System User login account
+---------------------------------------------------
+FEDORA USER:			$FEDORA_USER
+FEDORA USER PASSWORD:		$FEDORA_USER_PASS
+
+Fedora Web Administrator Account
+---------------------------------------------------
+FEDORA Web ADMIN: 		$FEDORA_ADMIN_USER
+FEDORA Web Admin Password:	$FEDORA_ADMIN_PASS
+
+
+Fedora GSearch Administrator Account
+---------------------------------------------------
+FEDORA GSEARCH USER:		$FEDORA_GSEARCH_ADMIN_USER
+FEDORA GSEARCH ADMIN PASSWORD:	$FEDORA_GSEARCH_ADMIN_PASS
+
+MySQL DB Details
+--------------------------------------------------
+MYSQL ROOT PASSWORD:		$ROOT_MYSQL_PASS
+MYSQL SERVER:			$DB_SERVER
+FEDORA DB NAME:			$FEDORA_DB_NAME
+FEDORA DB USER:			$FEDORA_DB_USER
+FEDORA DB PASSWORD:		$FEDORA_DB_PASS
+
+Installation Log
+--------------------------------------------------
+A log of this installation is located at: $INSTALL_LOG
+
+
+***Please save this information for your records***
