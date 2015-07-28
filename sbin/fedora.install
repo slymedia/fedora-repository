@@ -192,3 +192,4 @@ chown -R $FEDORA_USER:$FEDORA_USER $FEDORA_HOME
 # Start fedora 
 #
 service fedora start
+sleep 300
