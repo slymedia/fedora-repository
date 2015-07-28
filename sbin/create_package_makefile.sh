@@ -17,7 +17,7 @@ done
 echo $INSTALL_CMD
 echo $UNINSTALL_CMD
 
-cp ../Makefile .
+cp $REPOSITORY_PKGS/Makefile .
 
 sed -i 's|INSTALL_PACKAGE_COMMAND|$INSTALL_CMD|' ./Makefile
 sed -i 's|UNINSTALL_PACKAGE_COMMAND|$UNINSTALL_CMD|' ./Makefile
