@@ -11,18 +11,10 @@
 . ../etc/database.sh
 
 #
-# install mysql
+# install packages
 #
-yum install -y mysql
-yum install -y mysqld
-yum install -y mysql-server
-#
-# Install php
-#
-yum install -y php
-yum install -y php-mbstring
-yum install -y php-gd
-yum install -y php-mysqli
+yum install -y mysql mysqld mysql-server php php-mbstring php-gd php-mysqli
+
 #
 # Make sure it's running at boot
 #
