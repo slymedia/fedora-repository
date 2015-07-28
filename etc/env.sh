@@ -4,6 +4,7 @@
 #
 #---------------------------------------------
 #
+export DOC_ROOT=DOC_ROOT_TO_CHANGE
 export FEDORA_HOME=FEDORA_HOME_TO_CHANGE
 export FEDORA_USER=FEDORA_USER_TO_CHANGE
 export FEDORA_VERSION=FEDORA_VERSION_TO_CHANGE
