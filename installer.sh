@@ -159,5 +159,9 @@ fi
 #
 service portreserve stop
 chkconfig portreserve off
-
+#
+# Send email to let root (ADMIN_EMAIL) know it's complete
+#
+cat $REPOSITORY_HOME/etc/install-complete-email.txt | mail -s "Your new FEDORA COMMONS server information" $ADMIN_EMAIL
+sleep 60      # make sure it gets sent before reboot
 #reboot
