@@ -8,9 +8,10 @@
 
 if [ $DJATOKA_VERSION == "adore" ]; then
   #
-  # Make sure fedora is stopped
+  # Make sure fedora is started
   #
   service fedora start
+  sleep 300
   #
   ## Adore Djatoka install
   #
@@ -21,7 +22,7 @@ if [ $DJATOKA_VERSION == "adore" ]; then
   chown -R $FEDORA_USER:$FEDORA_USER $REPOSITORY_PKGS/adore-djatoka-1.1
   cp $REPOSITORY_PKGS/adore-djatoka-1.1/dist/adore-djatoka.war $CATALINA_HOME/webapps/
   # wait for tomcat to load it
-  sleep 60
+  sleep 300
   cp -f $REPOSITORY_PKGS/adore-djatoka-1.1/dist/adore-djatoka-1.1.jar ${FEDORA_HOME}/tomcat/webapps/adore-djatoka/WEB-INF/lib/
   #
   # update djatoka test page settings
