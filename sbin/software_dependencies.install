@@ -231,9 +231,13 @@ export LIBLEPT_HEADERSDIR=$REPOSITORY_PKGS/leptonica-1.69/include
 			cd $SRC_DIR
 			$PACKAGE_UNCOMPRESS $PACKAGE_TARFILE
 			cd $PACKAGE_DIR_UNCOMPRESSED
-			./configure --prefix=$REPOSITORY_PKGS/$PACKAGE_NAME-$PACKAGE_VERSION $EXTRA_CONFIGURE_ARGS
-			make
-			make install
+			if [ -f ./configure ]; then
+				./configure --prefix=$REPOSITORY_PKGS/$PACKAGE_NAME-$PACKAGE_VERSION $EXTRA_CONFIGURE_ARGS
+				make
+				make install
+			else
+				echo "No configure found for this package!"
+			fi
 			cd $REPOSITORY_PKGS/$PACKAGE_NAME-$PACKAGE_VERSION
 			../../sbin/create_package_makefile.sh
 			make install
