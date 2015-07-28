@@ -215,17 +215,22 @@ export LIBLEPT_HEADERSDIR=$REPOSITORY_PKGS/leptonica-1.69/include
 	do
 		#. $PKG
 		. ../etc/packages/$PKG
-		wget -N -P $SRC_DIR $PACKAGE_URL
-		cd $SRC_DIR
-		$PACKAGE_UNCOMPRESS $PACKAGE_TARFILE
-		cd $PACKAGE_DIR_UNCOMPRESSED
-		./configure --prefix=$REPOSITORY_PKGS/$PACKAGE_NAME-$PACKAGE_VERSION $EXTRA_CONFIGURE_ARGS
-		make
-		make install
-		cd $REPOSITORY_PKGS/$PACKAGE_NAME-$PACKAGE_VERSION
-		../../sbin/create_package_makefile.sh
-		make install
-		cd $SRC_DIR
+		if [ ! $REPOSITORY_PKGS/$PACKAGE_NAME-$PACKAGE_VERSION ]
+                then
+			wget -N -P $SRC_DIR $PACKAGE_URL
+			cd $SRC_DIR
+			$PACKAGE_UNCOMPRESS $PACKAGE_TARFILE
+			cd $PACKAGE_DIR_UNCOMPRESSED
+			./configure --prefix=$REPOSITORY_PKGS/$PACKAGE_NAME-$PACKAGE_VERSION $EXTRA_CONFIGURE_ARGS
+			make
+			make install
+			cd $REPOSITORY_PKGS/$PACKAGE_NAME-$PACKAGE_VERSION
+			../../sbin/create_package_makefile.sh
+			make install
+			cd $SRC_DIR
+		else
+			echo "$PKG is already installed!"
+		fi
 	done
 
 if [! -L $REPOSITORY_HOME/bin/fits.sh ]
