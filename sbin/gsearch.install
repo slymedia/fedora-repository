@@ -19,7 +19,7 @@ if [ $GSEARCH_VERSION == "2.6" ]; then
   unzip fedoragsearch-2.6.zip
   chown -R $FEDORA_USER:$FEDORA_USER fedoragsearch-2.6
   cp fedoragsearch-2.6/fedoragsearch.war ${FEDORA_HOME}/tomcat/webapps/
-  sleep 60   # wait for war file to load in tomcat
+  sleep 300   # wait for war file to load in tomcat
 fi
 
 #
