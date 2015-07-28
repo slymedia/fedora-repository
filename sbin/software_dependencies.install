@@ -215,7 +215,7 @@ export LIBLEPT_HEADERSDIR=$REPOSITORY_PKGS/leptonica-1.69/include
 	do
 		#. $PKG
 		. ../etc/packages/$PKG
-		if [ ! $REPOSITORY_PKGS/$PACKAGE_NAME-$PACKAGE_VERSION ]
+		if [ ! -d $REPOSITORY_PKGS/$PACKAGE_NAME-$PACKAGE_VERSION ]
                 then
 			wget -N -P $SRC_DIR $PACKAGE_URL
 			cd $SRC_DIR
@@ -241,7 +241,7 @@ else
 	echo "$REPOSITORY_HOME/bin/fits.sh symbolic link already exists!"
 fi
 
-if [ ! -f $REPOSITORY_HOME/share/tessdata/eng.cube.size]
+if [ ! -f $REPOSITORY_HOME/share/tessdata/eng.cube.size ]
 then
 	#
 	## Add in tesseract language pack
