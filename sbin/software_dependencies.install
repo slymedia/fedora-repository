@@ -74,8 +74,8 @@ yum -y install xpdf yasm lame lame-libs gdisk gettext libtool
 #
 if [ ! -f /usr/bin/ffmpeg2theora ]
 then
-	wget -N -P ../src http://v2v.cc/~j/ffmpeg2theora/ffmpeg2theora-0.29.linux64.bin
-	install -m 755 ../src/ffmpeg2theora-0.29.linux64.bin /usr/bin/ffmpeg2theora
+	wget -N -P $SRC_DIR http://v2v.cc/~j/ffmpeg2theora/ffmpeg2theora-0.29.linux64.bin
+	install -m 755 $SRC_DIR/ffmpeg2theora-0.29.linux64.bin /usr/bin/ffmpeg2theora
 else
 	echo "ffmpeg2theora is already installed!"
 fi
