@@ -30,6 +30,16 @@ if [ ! -d $SRC_DIR ]
 then
 	mkdir -p $SRC_DIR
 fi
+
+if [ ! -d $INSTALL_PREFIX/lib ]
+then
+        mkdir -p $INSTALL_PREFIX/lib
+fi
+if [ ! -d $INSTALL_PREFIX/share ]
+then
+        mkdir -p $INSTALL_PREFIX/share
+fi
+
 #
 # Install Java
 #
@@ -239,6 +249,11 @@ then
 	ln -s $REPOSITORY_HOME/packages/fits-0.6.2/fits.sh $REPOSITORY_HOME/bin/fits.sh
 else
 	echo "$REPOSITORY_HOME/bin/fits.sh symbolic link already exists!"
+fi
+
+if [ ! -d $INSTALL_PREFIX/share/tessdata ]
+then
+        mkdir -p $INSTALL_PREFIX/share/tessdata
 fi
 
 if [ ! -f $REPOSITORY_HOME/share/tessdata/eng.cube.size ]
