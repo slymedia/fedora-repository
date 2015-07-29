@@ -87,15 +87,15 @@ cd $REPOSITORY_HOME/sbin
 #
 #---------------------------------------------
 #
-script -ac ./software_dependencies.install ${INSTALL_LOG}
-script -ac ./apache.install ${INSTALL_LOG}
+script -ac ./software_dependencies.install ${INSTALL_LOG} &&
+script -ac ./apache.install ${INSTALL_LOG} &&
 if [ $INSTALL_MYSQL == "Yes" ]; then
-    script -ac ./mysql.install ${INSTALL_LOG}
+    script -ac ./mysql.install ${INSTALL_LOG} &&
 fi
-script -ac ./fedora.install ${INSTALL_LOG}
-script -ac ./gsearch.install ${INSTALL_LOG}
-script -ac ./solr.install ${INSTALL_LOG}
-script -ac ./djatoka.install ${INSTALL_LOG}
+script -ac ./fedora.install ${INSTALL_LOG} &&
+script -ac ./gsearch.install ${INSTALL_LOG} &&
+script -ac ./solr.install ${INSTALL_LOG} &&
+script -ac ./djatoka.install ${INSTALL_LOG} &&
 script -ac ./set_permissions.sh ${INSTALL_LOG}
 
 if [ $INSTALL_CSF == "Yes" ]; then
