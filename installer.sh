@@ -86,14 +86,14 @@ cd $REPOSITORY_HOME/sbin
 #
 #---------------------------------------------
 #
-#script -ac ./software_dependencies.install ${INSTALL_LOG} &&
-#script -ac ./apache.install ${INSTALL_LOG} &&
-#script -ac ./mysql.install ${INSTALL_LOG} &&
-#script -ac ./fedora.install ${INSTALL_LOG} &&
-#script -ac ./gsearch.install ${INSTALL_LOG} &&
-#script -ac ./solr.install ${INSTALL_LOG} &&
-#script -ac ./djatoka.install ${INSTALL_LOG} &&
-#script -ac ./set_permissions.sh ${INSTALL_LOG}
+script -ac ./software_dependencies.install ${INSTALL_LOG} &&
+script -ac ./apache.install ${INSTALL_LOG} &&
+script -ac ./mysql.install ${INSTALL_LOG} &&
+script -ac ./fedora.install ${INSTALL_LOG} &&
+script -ac ./gsearch.install ${INSTALL_LOG} &&
+script -ac ./solr.install ${INSTALL_LOG} &&
+script -ac ./djatoka.install ${INSTALL_LOG} &&
+script -ac ./set_permissions.sh ${INSTALL_LOG}
 
 #./software_dependencies.install; ./apache.install; ./mysql.install; ./fedora.install; ./gsearch.install; ./solr.install; ./djatoka.install; ./set_permissions.sh
 
