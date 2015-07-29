@@ -95,7 +95,7 @@ cd $REPOSITORY_HOME/sbin
 #script -ac ./djatoka.install ${INSTALL_LOG} &&
 #script -ac ./set_permissions.sh ${INSTALL_LOG}
 
-#./software_dependencies.install; ./apache.install; ./mysql.install; ./fedora.install; ./gsearch.install; ./solr.install; ./djatoka.install; ./set_permissions.sh
+./software_dependencies.install; ./apache.install; ./mysql.install; ./fedora.install; ./gsearch.install; ./solr.install; ./djatoka.install; ./set_permissions.sh
 
 if [ $INSTALL_CSF == "Yes" ]; then
     #
