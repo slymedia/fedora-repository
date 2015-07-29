@@ -47,7 +47,6 @@ export DOC_ROOT=/var/www/html
 #
 export INSTALL_CSF="No"                                # Install the CSF firewall
 export ALLOW_ONLY_US="Yes"                              # Only allow US access to the server
-export INSTALL_MYSQL="Yes"                              # Yes or No for installing Mysqld locally on machine
 export ROOT_MYSQL_PASS='mysqlroot'                      # If Yes to installing MySQL set the root user password
 export DB_SERVER=localhost
 export FEDORA_DB_NAME="fedora3"        		            # Name of fedora MySQL database -> fedora3 is recommended
@@ -89,9 +88,7 @@ cd $REPOSITORY_HOME/sbin
 #
 script -ac ./software_dependencies.install ${INSTALL_LOG} &&
 script -ac ./apache.install ${INSTALL_LOG} &&
-if [ $INSTALL_MYSQL == "Yes" ]; then
-    script -ac ./mysql.install ${INSTALL_LOG} &&
-fi
+script -ac ./mysql.install ${INSTALL_LOG} &&
 script -ac ./fedora.install ${INSTALL_LOG} &&
 script -ac ./gsearch.install ${INSTALL_LOG} &&
 script -ac ./solr.install ${INSTALL_LOG} &&
