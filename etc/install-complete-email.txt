@@ -1,4 +1,4 @@
-This is an automatic message from your new Fedora server. 
+This is an automatic message from your new Fedora server.... $SERVER_FULL_NAME
 
 ** Do Not Reply to this message as it will return back to you **
 
