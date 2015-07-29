@@ -58,6 +58,19 @@ FEDORA DB PASSWORD:		$FEDORA_DB_PASS
 **Please note that phpMySQL is installed on the server to administer your MySQL databases.
 In order to access it you first need to log into the server as root and edit the phpmyadmin configuration to allow access from your IP address. ( http://$SERVER_FULL_NAME/phpMyAdmin )
 
+Server URL's
+--------------------------------------------------
+
+http://$SERVER_FULL_NAME:8080                # location of Tomcat
+http://$SERVER_FULL_NAME:8080/fedora         # fedora commons
+http://$SERVER_FULL_NAME:8080/fedora/objects         # fedora commons object search
+http://$SERVER_FULL_NAME:8080/fedora/admin         # fedora commons admin
+http://$SERVER_FULL_NAME:8080/fedoragsearch        # fedora gsearch
+http://$SERVER_FULL_NAME:8080/fedoragsearch/rest        # fedora gsearch rest interface
+http://$SERVER_FULL_NAME:8080/solr         # solr indexing
+http://$SERVER_FULL_NAME:8080/djatoka         # djatoka image processor
+http://$SERVER_FULL_NAME:8080/saxon         # saxon xslt processor
+http://$SERVER_FULL_NAME/phpMyAdmin         # MySQL DB administrator interface
 
 Installation Log
 --------------------------------------------------
