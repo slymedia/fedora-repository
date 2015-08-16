@@ -68,7 +68,8 @@ rpm -ivh http://download1.rpmfusion.org/free/el/updates/6/i386/rpmfusion-free-re
 # install software
 #
 #yum -y install ffmpeg
-yum -y install xpdf yasm lame lame-libs gdisk gettext libtool
+#yum -y install xpdf yasm lame lame-libs gdisk gettext libtool
+yum -y install gdisk
 #
 # ffmpeg2theora
 #
