@@ -221,55 +221,55 @@ export LIBLEPT_HEADERSDIR=$REPOSITORY_PKGS/leptonica-1.69/include
 #
 # Install dependency packages in repository directory tree
 #
-	for PKG in `ls ../etc/packages | grep .package`
-	do
-		#. $PKG
-		. ../etc/packages/$PKG
-		if [ ! -d $SRC_DIR/$PACKAGE_DIR_UNCOMPRESSED ]
-                then
-			wget -N -P $SRC_DIR $PACKAGE_URL
-			cd $SRC_DIR
-			$PACKAGE_UNCOMPRESS $PACKAGE_TARFILE
-			cd $PACKAGE_DIR_UNCOMPRESSED
-			if [ -f ./configure ]; then
-				./configure --prefix=$REPOSITORY_PKGS/$PACKAGE_NAME-$PACKAGE_VERSION $EXTRA_CONFIGURE_ARGS
-				make
-				make install
-			else
-				echo "No configure found for this package!"
-			fi
-			cd $REPOSITORY_PKGS/$PACKAGE_NAME-$PACKAGE_VERSION
-			../../sbin/create_package_makefile.sh
-			make install
-			cd $SRC_DIR
-		else
-			echo "$PKG is already installed!"
-		fi
-	done
+#	for PKG in `ls ../etc/packages | grep .package`
+#	do
+#		#. $PKG
+#		. ../etc/packages/$PKG
+#		if [ ! -d $SRC_DIR/$PACKAGE_DIR_UNCOMPRESSED ]
+ #               then
+#			wget -N -P $SRC_DIR $PACKAGE_URL
+#			cd $SRC_DIR
+#			$PACKAGE_UNCOMPRESS $PACKAGE_TARFILE
+#			cd $PACKAGE_DIR_UNCOMPRESSED
+#			if [ -f ./configure ]; then
+#				./configure --prefix=$REPOSITORY_PKGS/$PACKAGE_NAME-$PACKAGE_VERSION $EXTRA_CONFIGURE_ARGS
+#				make
+#				make install
+#			else
+#				echo "No configure found for this package!"
+#			fi
+#			cd $REPOSITORY_PKGS/$PACKAGE_NAME-$PACKAGE_VERSION
+#			../../sbin/create_package_makefile.sh
+#			make install
+#			cd $SRC_DIR
+#		else
+#			echo "$PKG is already installed!"
+#		fi
+#	done
 
-if [! -L $REPOSITORY_HOME/bin/fits.sh ]
-then
+#if [! -L $REPOSITORY_HOME/bin/fits.sh ]
+#then
 	# link fits.sh 
-	ln -s $REPOSITORY_HOME/packages/fits-0.6.2/fits.sh $REPOSITORY_HOME/bin/fits.sh
-else
-	echo "$REPOSITORY_HOME/bin/fits.sh symbolic link already exists!"
-fi
+#	ln -s $REPOSITORY_HOME/packages/fits-0.6.2/fits.sh $REPOSITORY_HOME/bin/fits.sh
+#else
+#	echo "$REPOSITORY_HOME/bin/fits.sh symbolic link already exists!"
+#fi
 
-if [ ! -d $INSTALL_PREFIX/share/tessdata ]
-then
-        mkdir -p $INSTALL_PREFIX/share/tessdata
-fi
+#if [ ! -d $INSTALL_PREFIX/share/tessdata ]
+#then
+#        mkdir -p $INSTALL_PREFIX/share/tessdata
+#fi
 
-if [ ! -f $REPOSITORY_HOME/share/tessdata/eng.cube.size ]
-then
+#if [ ! -f $REPOSITORY_HOME/share/tessdata/eng.cube.size ]
+#then
 	#
 	## Add in tesseract language pack
 	#
-	wget -N -P $SRC_DIR https://tesseract-ocr.googlecode.com/files/tesseract-ocr-3.02.eng.tar.gz
-	cd $SRC_DIR
-	tar -zxvf tesseract-ocr-3.02.eng.tar.gz
-	cp -r tesseract-ocr/tessdata/eng.* $REPOSITORY_HOME/share/tessdata
-	chown -R fedora:fedora $REPOSITORY_HOME/share/tessdata/eng.*
-else
-	echo "Tesseract language files already installed!"
-fi
+#	wget -N -P $SRC_DIR https://tesseract-ocr.googlecode.com/files/tesseract-ocr-3.02.eng.tar.gz
+#	cd $SRC_DIR
+#	tar -zxvf tesseract-ocr-3.02.eng.tar.gz
+#	cp -r tesseract-ocr/tessdata/eng.* $REPOSITORY_HOME/share/tessdata
+#	chown -R fedora:fedora $REPOSITORY_HOME/share/tessdata/eng.*
+#else
+#	echo "Tesseract language files already installed!"
+#fi
