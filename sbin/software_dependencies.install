@@ -183,25 +183,25 @@ yum -y install gdisk libtheora libtheora-devel
 #
 # build ffmpeg
 #
-if [ ! -d $SRC_DIR/ffmpeg_sources/ffmpeg ]
-then
-	cd $SRC_DIR/ffmpeg_sources
-	git clone --depth 1 git://source.ffmpeg.org/ffmpeg
-	cd ffmpeg
-	PKG_CONFIG_PATH="$REPOSITORY_PKGS/ffmpeg/lib/pkgconfig" ./configure --prefix="$REPOSITORY_PKGS/ffmpeg" --extra-cflags="-I$REPOSITORY_PKGS/ffmpeg/include" --extra-ldflags="-L$REPOSITORY_PKGS/ffmpeg/lib:/usr/lib64" --bindir="$REPOSITORY_PKGS/ffmpeg/bin" --enable-gpl --enable-nonfree --enable-libfdk_aac --enable-libmp3lame --enable-libopus --enable-libvorbis --enable-libvpx --enable-libx264 --enable-libfreetype --enable-libtheora
-	make
-	make install
-	make distclean
-	hash -r
+#if [ ! -d $SRC_DIR/ffmpeg_sources/ffmpeg ]
+#then
+#	cd $SRC_DIR/ffmpeg_sources
+#	git clone --depth 1 git://source.ffmpeg.org/ffmpeg
+#	cd ffmpeg
+#	PKG_CONFIG_PATH="$REPOSITORY_PKGS/ffmpeg/lib/pkgconfig" ./configure --prefix="$REPOSITORY_PKGS/ffmpeg" --extra-cflags="-I$REPOSITORY_PKGS/ffmpeg/include" --extra-ldflags="-L$REPOSITORY_PKGS/ffmpeg/lib:/usr/lib64" --bindir="$REPOSITORY_PKGS/ffmpeg/bin" --enable-gpl --enable-nonfree --enable-libfdk_aac --enable-libmp3lame --enable-libopus --enable-libvorbis --enable-libvpx --enable-libx264 --enable-libfreetype --enable-libtheora
+#	make
+#	make install
+#	make distclean
+#	hash -r
 	#
 	# install Makefile that populates symlinks from $REPOSITORY_PKGS/ffmpeg to $REPOSITORY_HOME
 	#
-	cd $REPOSITORY_PKGS/ffmpeg
-	../../sbin/create_package_makefile.sh
-	make install
-else
-	echo "ffmpeg source tree alreasy exists in $SRC_DIR/ffmpeg_sources/ffmpeg!"
-fi
+#	cd $REPOSITORY_PKGS/ffmpeg
+#	../../sbin/create_package_makefile.sh
+#	make install
+#else
+#	echo "ffmpeg source tree alreasy exists in $SRC_DIR/ffmpeg_sources/ffmpeg!"
+#fi
 #if [ -d $REPOSITORY_PKGS/ffmpeg ]
 #then
 	#
