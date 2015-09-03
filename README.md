@@ -171,7 +171,7 @@ Alternatively you can just install this manually by not doing the above step of 
 	% chmod 755 /opt/fedora-repository/installer.sh
 	% cd /opt/fedora-repository
 
-Now edit the file installer.sh in order to put in the values needed for the installation varaibles. 
+Now edit the file installer.sh in order to put in the values needed for the installation variables. 
 Then just run the installer
 
 	% ./installer.sh >/opt/fedora-repository/installation.log 2>&1
