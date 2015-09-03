@@ -23,6 +23,7 @@ export SERVER_NAME=`hostname -s`                        # set server short name
 export SERVER_FULL_NAME=`hostname -f`                   # set server full name
 export ADMIN_EMAIL='youremail@domain.com'               # enter your email address to get messages from the server
 export INSTALL_PREFIX=`pwd`
+export INSTALL_DIR=/opt
 export WEB_ROOT=/var/www/html
 export IP_ADDR="xxx.xxx.xxx.xxx"                        # IP address of this server (ifconfig -a). 
 export SITES_ALL_MODULES=$WEB_ROOT/sites/all/modules
