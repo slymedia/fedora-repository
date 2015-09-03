@@ -52,30 +52,31 @@ Directory Contents
  		- execute:  `chkconfig --add fedora-installer; chkconfig fedora-installer on`
  		- reboot 
  when the machine boots it will run the service and install fedora commons on the server. Then disables itself after it's run. 
+
 Here's the code:
 ######################### /etc/init.d/fedora-installer ######################
-#!/bin/bash
-#
-# fedora-installer This will install initial software for a fedora commons 3.8.1 server
-# 
-# chkconfig: 2345 9 20
-# description: do things on firstboot to setup the server
+	#!/bin/bash
+	#
+	# fedora-installer This will install initial software for a fedora commons 3.8.1 server
+	# 
+	# chkconfig: 2345 9 20
+	# description: do things on firstboot to setup the server
 
-randpw ()
-{
-	date +%s | sha256sum | base64 | head -c 7 ; echo
-}
-install-software()
-{
-	yum -y install git gettext sendmail
-}
-start()
-{
-    	cd /opt;
-    	git clone https://github.com/slymedia/fedora-repository.git;
-    	chkconfig slymedia-installer off;
-	return 0;
-}
+	randpw ()
+	{
+		date +%s | sha256sum | base64 | head -c 7 ; echo
+	}
+	install-software()
+	{
+		yum -y install git gettext sendmail
+	}
+	start()
+	{
+	    	cd /opt;
+	    	git clone https://github.com/slymedia/fedora-repository.git;
+	    	chkconfig slymedia-installer off;
+		return 0;
+	}
 
 configure-ip()
 {
