@@ -1,5 +1,5 @@
 # fedora-repository
-Installation Framework for installing Fedora Commons Database Repository Server
+Installation Framework for installing Fedora Commons Database Repository Server on a CentOS 6 Host
 
 Directory Contents
 -------------------
