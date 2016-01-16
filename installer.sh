@@ -26,21 +26,22 @@ export INSTALL_PREFIX=`pwd`
 export INSTALL_DIR=/opt
 export WEB_ROOT=/var/www/html
 export IP_ADDR=`hostname -i`                        # IP address of this server. 
-export SITES_ALL_MODULES=$WEB_ROOT/sites/all/modules
-export SITES_ALL_LIB=$WEB_ROOT/sites/all/libraries
+#
+# Software versions
+#
 export FEDORA_VERSION="3.8"                             # Valid versions 3.5 and 3.8
 export SOLR_VERSION="4.2.0"                             # Valid versions 3.6.2 and 4.2.0
 export GSEARCH_VERSION="2.6"	                        # Valid versions 2.4.2 and 2.6
 export DJATOKA_VERSION="adore"                          # Valid versions adore
 #
 ## Variables to be passed to env.sh
+#
 export FEDORA_HOME=$INSTALL_PREFIX/fedora
 export FEDORA_USER=fedora
 export FEDORA_USER_PASS='fedora2014'
 export REPOSITORY_HOME=$INSTALL_PREFIX
 export SOLR_HOME=$INSTALL_PREFIX/solr
 export JAVA_HOME=${INSTALL_PREFIX}/java
-export DOC_ROOT=/var/www/html
 #
 ## Variables to be passed to database.sh
 #
@@ -88,16 +89,6 @@ cd $REPOSITORY_HOME/sbin
 #
 #---------------------------------------------
 #
-#script -ac ./software_dependencies.install ${INSTALL_LOG} &&
-#script -ac ./apache.install ${INSTALL_LOG} &&
-#script -ac ./mysql.install ${INSTALL_LOG} &&
-#script -ac ./fedora.install ${INSTALL_LOG} &&
-#script -ac ./gsearch.install ${INSTALL_LOG} &&
-#script -ac ./solr.install ${INSTALL_LOG} &&
-#script -ac ./djatoka.install ${INSTALL_LOG} &&
-#script -ac ./set_permissions.sh ${INSTALL_LOG}
-
-
 ./software_dependencies.install; ./apache.install; ./mysql.install; ./fedora.install; ./gsearch.install; ./solr.install; ./djatoka.install; ./set_permissions.sh
 
 if [ $INSTALL_CSF == "Yes" ]; then
@@ -166,7 +157,7 @@ chkconfig portreserve off
 # Send email to let root (ADMIN_EMAIL) know it's complete
 #
 envsubst < "$REPOSITORY_HOME/etc/install-complete-email.txt" > "$REPOSITORY_HOME/installation-details.txt"
-cat $REPOSITORY_HOME/installation-details.txt | mail -s "Your FEDORA COMMONS server installation details" $ADMIN_EMAIL
+cat $REPOSITORY_HOME/installation-details.txt | mail -s "Your FEDORA COMMONS server installation details for $SERVER_FULL_NAME" $ADMIN_EMAIL
 sleep 60      # make sure it gets sent before reboot
 echo "Installation completed in $SECONDS seconds"
 reboot
