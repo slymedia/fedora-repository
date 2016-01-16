@@ -102,3 +102,5 @@ cp target/gsearch_extensions-0.1.1-jar-with-dependencies.jar $CATALINA_HOME/weba
 #
 sed -i "s|\/usr\/local\/fedora|${FEDORA_HOME}|g" ${CATALINA_HOME}/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/foxmlToSolr.xslt  
 sed -i "s|\/usr\/local\/fedora|${FEDORA_HOME}|g" ${CATALINA_HOME}/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/slurp_all_MODS_to_solr.xslt
+
+sleep 300
