@@ -9,7 +9,7 @@ if [ $SOLR_VERSION == "4.2.0" ]; then
   #
   # stop fedora 
   #
-  service fedora stop
+  #service fedora stop
   #
   # install Solr 4.2.0
   #
@@ -34,8 +34,8 @@ if [ $SOLR_VERSION == "4.2.0" ]; then
   #
   # start fedora to load the war so we can configure it. 
   #
-  service fedora start
-  sleep 300   # wait for war to load in fedora
+  #service fedora start
+  sleep 300   # wait for war to load in solr
   #
   # Grab basic_solr_config
   #
