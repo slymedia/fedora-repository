@@ -12,7 +12,7 @@
 #
 # yum -y install <package_name>-<package-version>
 #
-yum -y install gcc gcc-c++ autoconf automake libtool make nasm pkgconfig zlib-devel ImageMagick ghostscript ant git unzip freetype-devel file
+yum -y install gcc gcc-c++ autoconf automake libtool make nasm pkgconfig zlib-devel ImageMagick ghostscript ant git unzip freetype-devel file which
 #
 # create fedora user account
 #
