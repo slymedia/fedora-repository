@@ -27,7 +27,7 @@ start()
             exit 1;
         else
         yum -y install git gettext sendmail
-        git clone https://github.com/dhinitiative/fedora-repository.git;
+        git clone https://github.com/slymedia/fedora-repository.git;
         chkconfig repository-installer off;
         fi
     return 0;
