@@ -86,8 +86,8 @@ chkconfig fedora on
 #
 #$CATALINA_HOME/bin/startup.sh
 service fedora start
-sleep 300
-service fedora stop
+sleep 600
+#service fedora stop
 
 if [ $FEDORA_VERSION == "3.8" ]; then
   #
@@ -191,5 +191,5 @@ chown -R $FEDORA_USER:$FEDORA_USER $FEDORA_HOME
 #
 # Start fedora 
 #
-service fedora start
-sleep 300
+#service fedora start
+#sleep 300
