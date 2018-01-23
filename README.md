@@ -165,11 +165,11 @@ Here's the code:
 Alternatively you can just install this manually by not doing the above step of adding the chkconfig service. Instead do the following:
 
 	- Install CentOS 6 minimal.
-	% mkdir /opt
+	% yum -y install git
 	% cd /opt;
 	% git clone https://github.com/slymedia/fedora-repository.git;
-	% chmod 755 /opt/fedora-repository/installer.sh
-	% cd /opt/fedora-repository
+	% chmod 755 fedora-repository/installer.sh
+	% cd fedora-repository
 
 Now edit the file installer.sh in order to put in the values needed for the installation variables. 
 Then just run the installer
