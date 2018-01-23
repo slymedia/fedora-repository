@@ -85,7 +85,8 @@ chkconfig fedora on
 # Start Fedora to get things populated
 #
 #$CATALINA_HOME/bin/startup.sh
-service fedora start
+#service fedora start
+/etc/init.d/fedora -r
 sleep 600
 #service fedora stop
 
