@@ -96,7 +96,7 @@ git clone https://github.com/discoverygarden/dgi_gsearch_extensions.git
 cd dgi_gsearch_extensions
 ${REPOSITORY_HOME}/bin/mvn package
 chown -R $FEDORA_USER:$FEDORA_USER .
-cp target/gsearch_extensions-0.1.1-jar-with-dependencies.jar $CATALINA_HOME/webapps/fedoragsearch/WEB-INF/lib
+cp target/gsearch_extensions-0.1.3-jar-with-dependencies.jar $CATALINA_HOME/webapps/fedoragsearch/WEB-INF/lib
 #
 # modify the gsearch files.. they have hardcoded /usr/local/fedora but we're installing in /opt/fedora
 #
